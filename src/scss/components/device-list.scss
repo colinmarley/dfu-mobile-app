@@ -1,0 +1,45 @@
+.device-list {
+    position: absolute;
+    height: 30vh;
+    width: 50vw;
+    left: 25vw;
+    overflow-y: scroll;
+    top: 20vh;
+    border: 0.25vh solid grey;
+    border-radius: 1vh;
+    background-color: lightgrey;
+    display: none;
+  }
+  
+  .device-list-element {
+    height: 5vh;
+    width: 50vw;
+    left: 0;
+    border-top: 0.25vh solid black;
+    border-bottom: 0.25vh solid black;
+  }
+  
+  .device-list-element-name {
+    margin: 0;
+    font-weight: bold;
+    margin-top: 0.5vh;
+    font-size: 1vh;
+  }
+  
+  .device-list-element-id {
+    margin: 0;
+    margin-top: 1vh;
+    font-size: 1vh;
+  }
+  
+  .device-list-element-btn {
+    position: relative;
+    left: 35vw;
+    height: 2vh;
+    width: 12vw;
+    top: -3vh;
+    background-color: #add8e6;
+    border: .1vh solid #00f;
+    border-radius: 1vh;
+    font-size: 1vh;
+  }

@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { bleMod } from './js/libs/ble/bleMod';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import DeviceListContainer from './js/components/containers/DeviceListContainer';
+import ScanButtonContainer from './js/components/containers/ScanButtonContainer';
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          browser: true
+        }
+    }
+
+
+    componentDidMount() {
+      if (!this.props.browser) {
+
+        bleMod.initialize(
+            {
+                "request": true,
+                "statusReceiver": false,
+                "restoreKey": "dfuTestApp"
+            }
+        );
+      }
+
+      this.setState({ browser: this.props.browser });
+    }
+
+    render() {
+        return (
+            <div className="app-container">
+                <ScanButtonContainer />
+            </div>
+        )
+    }
 }
 
 export default App;
