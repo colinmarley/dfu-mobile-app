@@ -29,6 +29,7 @@ class ScanButtonContainer extends Component {
 
     scanForDevices() {
         document.querySelector(".device-list").style.display = 'block';
+        document.querySelector(".scan-btn-div").style.display = "none";
         if (!this.props.isBrowser) {
             bleMod.startScan(this.onScanResult);
             setTimeout(() => {

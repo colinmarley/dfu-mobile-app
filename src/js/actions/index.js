@@ -3,7 +3,8 @@ export const SET_BROWSER = 'SET_BROWSER';
 
 //BLE
 export const ADD_DEVICE = 'ADD_DEVICE';
-export const SET_CONNECTED = 'SET_CONNECTED';
+export const SET_CONNECTION_STATUS = 'SET_CONNECTION_STATUS';
+export const SET_CONNECTED_DEVICE = 'SET_CONNECTED_DEVICE';
 
 
 
@@ -17,8 +18,13 @@ export const setBrowser = isBrowser => ({
 
 
 //BLE
-export const setConnected = isConnected => ({
-    type: SET_CONNECTED,
+export const setConnectedDevice = device => ({
+    type: SET_CONNECTED_DEVICE,
+    device
+});
+
+export const setConnectionStatus = isConnected => ({
+    type: SET_CONNECTION_STATUS,
     isConnected
 });
 

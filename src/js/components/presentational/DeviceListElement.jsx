@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DeviceListElement = ({ deviceName, deviceId }) => {
+const DeviceListElement = ({ deviceName, deviceId, onConnect }) => {
     return (
         <div className="device-list-element">
             <p className="device-list-element-name">{ deviceName }</p>
             <p className="device-list-element-id">{ deviceId }</p>
-            <button className="device-list-element-btn">Connect</button>
+            <button className="device-list-element-btn" id={deviceId} onClick={ (e) => onConnect(e) }>Connect</button>
         </div>
     )
 }

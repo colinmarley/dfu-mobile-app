@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { setConnectedDevice, setConnectionStatus } from '../../actions/index';
+
+import { bleMod } from '../../libs/ble/bleMod';
+
 
 import DeviceListElement from '../presentational/DeviceListElement';
 
 const mapStateToProps = (state, ownProps) => ({
-    stateBrowser: state.device.isBrowser
+    isBrowser: state.device.isBrowser
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    setConnectedDevice:  device => { dispatch(setConnectedDevice(device)); },
+    setConnectionStatus:  isConnected => { dispatch(setConnectionStatus(isConnected)); }
 });
 
 class DeviceList extends Component {
@@ -19,6 +24,9 @@ class DeviceList extends Component {
         this.state = {
             deviceList: []
         }
+
+        this.onConnect = this.onConnect.bind(this);
+        this.onConnectSuccess = this.onConnectSuccess.bind(this);
     }
 
     componentDidMount() {
@@ -43,7 +51,7 @@ class DeviceList extends Component {
 
         this.props.devices.forEach( device => {
             devices.push(
-                <DeviceListElement deviceName={device.name} deviceId={device.id} />
+                <DeviceListElement deviceName={device.name} deviceId={device.id} onConnect={this.onConnect} />
             );
         });
         
@@ -52,6 +60,21 @@ class DeviceList extends Component {
                 deviceList: devices
             });
         }
+    }
+
+    onConnect(e) {
+        if (!this.props.isBrowser) {
+            bleMod.connect(e.target.id, this.onConnectSuccess);
+        }
+    }
+
+    onConnectSuccess(result) {
+        console.log("successfully Connected");
+        console.log(result.name);
+
+        this.props.setConnectedDevice({name: result.name, id: result.address});
+        this.props.setConnectionStatus(true);
+
     }
     
     render () {

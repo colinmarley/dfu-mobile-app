@@ -1,6 +1,12 @@
 // DeviceList
 @import "./components/device-list.scss";
 
+//Scan Button
+@import "./components/scan-button.scss";
+
+//Connection Header
+@import "./components/conn-header.scss";
+
 
 body {
   margin: 0;
@@ -15,3 +21,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
