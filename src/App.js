@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { bleMod } from './js/libs/ble/bleMod';
+import { connect } from 'react-redux';
+
+import { setBrowser } from './js/actions/index';
 
 import DeviceListContainer from './js/components/containers/DeviceListContainer';
 import ScanButtonContainer from './js/components/containers/ScanButtonContainer';
+
+//Must name the state browser different from browser passed to props to differentiate
+const mapStateToProps = (state, ownProps) => ({
+  stateBrowser: state.device.isBrowser
+});
+
+const mapDispatchToProps = dispatch => ({
+  setBrowser: browser => { dispatch(setBrowser(browser)); }
+});
+
+
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-          browser: true
-        }
     }
 
 
@@ -25,17 +36,24 @@ class App extends Component {
             }
         );
       }
-
-      this.setState({ browser: this.props.browser });
+      console.log("AAAAAAAAAAHHHHHHH: ", this.props.browser);
+      this.props.setBrowser(this.props.browser);
     }
 
+    
+
     render() {
+      console.log("BROWSER BROWSER BROWSER: ", this.props.stateBrowser);
         return (
             <div className="app-container">
+                <h1>{ (this.props.stateBrowser) ? "Browser" : "Not Browser" }</h1>
                 <ScanButtonContainer />
             </div>
-        )
+        );
     }
 }
 
-export default App;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
