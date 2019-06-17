@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import { bleMod } from '../../libs/ble/bleMod.js';
+import { connect } from 'react-redux';
 
 import DeviceList from './DeviceList';
+
+const mapStateToProps = (state, ownProps) => ({
+    stateBrowser: state.device.isBrowser
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
 
 const TEST_DEVICES = [
     {name: "device 1", id: 1},
@@ -40,4 +49,7 @@ class DeviceListContainer extends Component {
     }
 }
 
-export default DeviceListContainer;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DeviceListContainer);

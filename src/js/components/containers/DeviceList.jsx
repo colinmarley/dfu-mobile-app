@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 
 import DeviceListElement from '../presentational/DeviceListElement';
+
+const mapStateToProps = (state, ownProps) => ({
+    stateBrowser: state.device.isBrowser
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
 
 class DeviceList extends Component {
     constructor (props) {
@@ -13,6 +23,7 @@ class DeviceList extends Component {
 
     componentDidMount() {
         let devices = [];
+
 
         this.props.devices.forEach( device => {
             devices.push(
@@ -46,11 +57,13 @@ class DeviceList extends Component {
     render () {
         return (
             <div className="device-list">
-                <DeviceListElement deviceName={"Device Name"} deviceId={'AA:AA:AA:AA:AA:AA'} />
                 {this.state.deviceList}
             </div>
         )
     }
 }
 
-export default DeviceList;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DeviceList);

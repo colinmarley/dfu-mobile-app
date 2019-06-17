@@ -7,8 +7,6 @@ const initState = {
 const deviceReducers = (state = initState, action) => {
     switch (action.type) {
         case SET_BROWSER:
-            console.log("SET_BROWSER");
-            console.log(action);
             return ({...state, isBrowser: action.isBrowser});
         default:
             return state;

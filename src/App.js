@@ -36,14 +36,12 @@ class App extends Component {
             }
         );
       }
-      console.log("AAAAAAAAAAHHHHHHH: ", this.props.browser);
       this.props.setBrowser(this.props.browser);
     }
 
     
 
     render() {
-      console.log("BROWSER BROWSER BROWSER: ", this.props.stateBrowser);
         return (
             <div className="app-container">
                 <h1>{ (this.props.stateBrowser) ? "Browser" : "Not Browser" }</h1>
