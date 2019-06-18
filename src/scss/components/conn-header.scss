@@ -38,6 +38,19 @@ p {
     padding-left: 3vw
 }
 
+.disconnect-btn {
+    position: absolute;
+    top: 3.5vh;
+    width: 30vw;
+    left: 10vw;
+    height: 3vh;
+    border: 0.25vh solid darkred;
+    border-radius: 1.5vh;
+    background-color: lightcoral;
+    color: darkred;
+    font-size: 1.25vh;
+}
+
 .conn-device-name-label {
     position: absolute;
     left: 50vw;
