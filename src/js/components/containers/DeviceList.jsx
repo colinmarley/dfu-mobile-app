@@ -71,6 +71,7 @@ class DeviceList extends Component {
             //On browser for testing
             this.props.setConnectedDevice({name: name, id: e.target.id});
             this.props.setConnectionStatus(true);
+            document.querySelector(".device-list").style.display = 'none';
         }
     }
 

@@ -9,6 +9,8 @@ import ConnectionHeader from '../presentational/ConnectionHeader';
 const mapStateToProps = (state, ownProps) => ({
     isConnected: state.ble.isConnected,
     connectedDevice: state.ble.connectedDevice,
+
+    isBrowser: state.device.isBrowser
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,12 +28,14 @@ class ConnectionHeaderContainer extends Component {
     }
 
     onDisconnect(e, id) {
-        bleMod.disconnect(id, this.onDisconnectSuccess, this.onDisconnectError);
+        if (!this.props.isBrowser) {
+            bleMod.disconnect(id, this.onDisconnectSuccess, this.onDisconnectError);
+        } else {
+            this.onDisconnectSuccess();
+        }
     }
 
-    onDisconnectSuccess(result) {
-        console.log("Reached onDisconnectSuccess");
-        console.log(result);
+    onDisconnectSuccess(result = '') {
         this.props.setConnectionStatus(false);
         this.props.setConnectedDevice({name: "", id: ""});
         document.querySelector(".scan-btn-div").style.display = "block";
