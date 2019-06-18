@@ -27,6 +27,7 @@ class DeviceList extends Component {
 
         this.onConnect = this.onConnect.bind(this);
         this.onConnectSuccess = this.onConnectSuccess.bind(this);
+        this.onConnectError = this.onConnectError.bind(this);
     }
 
     componentDidMount() {
@@ -62,19 +63,25 @@ class DeviceList extends Component {
         }
     }
 
-    onConnect(e) {
+    onConnect(e, name) {
         if (!this.props.isBrowser) {
-            bleMod.connect(e.target.id, this.onConnectSuccess);
+            //On mobile device
+            bleMod.connect(e.target.id, this.onConnectSuccess, this.onConnectError);
+        } else {
+            //On browser for testing
+            this.props.setConnectedDevice({name: name, id: e.target.id});
+            this.props.setConnectionStatus(true);
         }
     }
 
     onConnectSuccess(result) {
-        console.log("successfully Connected");
-        console.log(result.name);
-
         this.props.setConnectedDevice({name: result.name, id: result.address});
         this.props.setConnectionStatus(true);
+        document.querySelector(".device-list").style.display = 'none';
+    }
 
+    onConnectError(error) {
+        alert(`${error.address}: ${error.message}`);
     }
     
     render () {

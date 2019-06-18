@@ -1,21 +1,20 @@
 .device-list {
     position: absolute;
     height: 30vh;
-    width: 50vw;
-    left: 25vw;
+    width: 100vw;
+    left: 0vw;
     overflow-y: scroll;
     top: 20vh;
-    border: 0.25vh solid grey;
-    border-radius: 1vh;
-    background-color: lightgrey;
+    border-top: 0.5vh solid grey;
+    border-bottom: 0.5vh solid grey;
+    background-color: rgb(216, 216, 216);
     display: none;
   }
   
   .device-list-element {
     height: 5vh;
-    width: 50vw;
+    width: 100vw;
     left: 0;
-    border-top: 0.25vh solid black;
     border-bottom: 0.25vh solid black;
   }
   
@@ -34,7 +33,7 @@
   
   .device-list-element-btn {
     position: relative;
-    left: 35vw;
+    left: 85vw;
     height: 2vh;
     width: 12vw;
     top: -3vh;

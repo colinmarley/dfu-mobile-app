@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-const ConnectionHeader = ({status, browser, name, id}) => {
-    let condition = status && !browser;
+const ConnectionHeader = ({status, name, id}) => {
+    let condition = status;
     return (
         <div className="conn-header">
             <p className="conn-status-label">Status:</p>

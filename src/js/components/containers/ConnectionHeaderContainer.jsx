@@ -8,8 +8,6 @@ import ConnectionHeader from '../presentational/ConnectionHeader';
 const mapStateToProps = (state, ownProps) => ({
     isConnected: state.ble.isConnected,
     connectedDevice: state.ble.connectedDevice,
-
-    isBrowser: state.device.isBrowser
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,7 +22,7 @@ class ConnectionHeaderContainer extends Component {
     render() {
         return (
             <div className="conn-header-div">
-                <ConnectionHeader status={ this.props.isConnected } browser={ this.props.isBrowser } name={ this.props.connectedDevice.name } id={ this.props.connectedDevice.id } />
+                <ConnectionHeader status={ this.props.isConnected } name={ this.props.connectedDevice.name } id={ this.props.connectedDevice.id } />
             </div>
         );
     }

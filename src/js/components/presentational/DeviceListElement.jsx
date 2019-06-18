@@ -5,7 +5,7 @@ const DeviceListElement = ({ deviceName, deviceId, onConnect }) => {
         <div className="device-list-element">
             <p className="device-list-element-name">{ deviceName }</p>
             <p className="device-list-element-id">{ deviceId }</p>
-            <button className="device-list-element-btn" id={deviceId} onClick={ (e) => onConnect(e) }>Connect</button>
+            <button className="device-list-element-btn" id={deviceId} onClick={ (e) => onConnect(e, deviceName) }>Connect</button>
         </div>
     )
 }
