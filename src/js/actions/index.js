@@ -6,6 +6,11 @@ export const ADD_DEVICE = 'ADD_DEVICE';
 export const SET_CONNECTION_STATUS = 'SET_CONNECTION_STATUS';
 export const SET_CONNECTED_DEVICE = 'SET_CONNECTED_DEVICE';
 
+//DFU
+export const SET_DFU_STATUS = 'SET_DFU_STATUS';
+export const SET_INIT_STATUS = 'SET_INIT_STATUS';
+export const SET_FIRMWARE_STATUS = 'SET_FIRMWARE_STATUS';
+
 
 
 
@@ -31,4 +36,21 @@ export const setConnectionStatus = isConnected => ({
 export const addDevice = device => ({
     type: ADD_DEVICE,
     device
+});
+
+
+//DFU
+export const setDfuStatus = dfuReady => ({
+    type: SET_DFU_STATUS,
+    dfuReady
+});
+
+export const setInitStatus = initSent => ({
+    type: SET_INIT_STATUS,
+    initSent
+});
+
+export const setFirmwareStatus = firmwareSent => ({
+    type: SET_FIRMWARE_STATUS,
+    firmwareSent
 });

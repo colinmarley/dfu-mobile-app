@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { setConnectedDevice, setConnectionStatus } from '../../actions/index';
 
 import { bleMod } from '../../libs/ble/bleMod';
@@ -32,7 +31,8 @@ class DeviceList extends Component {
 
     componentDidMount() {
         let devices = [];
-
+        console.log("cordova.file");
+        console.log(cordova.file);
 
         this.props.devices.forEach( device => {
             devices.push(
