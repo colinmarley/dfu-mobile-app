@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => ({
 
     isBrowser: state.device.isBrowser,
 
-    cordova: state.ble.isConnected && !state.device.isBrowser
+    cordova: state.ble.isConnected
 
 });
 
