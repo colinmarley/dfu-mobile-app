@@ -31,8 +31,7 @@ class DeviceList extends Component {
 
     componentDidMount() {
         let devices = [];
-        console.log("cordova.file");
-        console.log(cordova.file);
+        
 
         this.props.devices.forEach( device => {
             devices.push(
@@ -72,6 +71,7 @@ class DeviceList extends Component {
             this.props.setConnectedDevice({name: name, id: e.target.id});
             this.props.setConnectionStatus(true);
             document.querySelector(".device-list").style.display = 'none';
+            document.querySelector(".update-buttons-container").style.display = 'block';
         }
     }
 
@@ -79,6 +79,7 @@ class DeviceList extends Component {
         this.props.setConnectedDevice({name: result.name, id: result.address});
         this.props.setConnectionStatus(true);
         document.querySelector(".device-list").style.display = 'none';
+        document.querySelector(".update-buttons-container").style.display = 'block';
     }
 
     onConnectError(error) {

@@ -1,0 +1,38 @@
+.update-buttons-container {
+    display: none;
+    top: 20vh;
+    position: absolute;
+    width: 100vw;
+    height: 50vh;
+    background-color: lightgrey;
+}
+
+.update-btn-div {
+    position: absolute;
+    height: 50vh;
+    width: 100vw;
+}
+
+.dfu-btn {
+    position: absolute;
+    width: 50vw;
+    height: 5vh;
+    left: 25vw;
+    top: 6vh;
+}
+
+.init-btn {
+    position: absolute;
+    width: 50vw;
+    height: 5vh;
+    left: 25vw;
+    top: 21.5vh;
+}
+
+.firmware-btn {
+    top: 38vh;
+    height: 5vh;
+    width: 50vw;
+    position: absolute;
+    left: 25vw;
+}

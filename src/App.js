@@ -7,6 +7,7 @@ import { setBrowser } from './js/actions/index';
 import DeviceListContainer from './js/components/containers/DeviceListContainer';
 import ScanButtonContainer from './js/components/containers/ScanButtonContainer';
 import ConnectionHeaderContainer from './js/components/containers/ConnectionHeaderContainer';
+import UpdateButtonsContainer from './js/components/containers/UpdateButtonsContainer';
 
 //Must name the state browser different from browser passed to props to differentiate
 const mapStateToProps = (state, ownProps) => ({
@@ -47,6 +48,7 @@ class App extends Component {
             <div className="app-container">
                 <ConnectionHeaderContainer />
                 <ScanButtonContainer />
+                <UpdateButtonsContainer /> 
             </div>
         );
     }
