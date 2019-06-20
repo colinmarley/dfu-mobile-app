@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setConnectedDevice, setConnectionStatus } from '../../actions/index';
 
-import { bleMod } from '../../libs/ble/bleMod';
+import { bleMod } from '../../libs/ble/bleDfu';
 
 
 import DeviceListElement from '../presentational/DeviceListElement';
@@ -67,7 +67,6 @@ class DeviceList extends Component {
             //On mobile device
             bleMod.connect(e.target.id, this.onConnectSuccess, this.onConnectError);
         } else {
-            console.log("onConnect (e.target):", e.target.id);
             this.onConnectSuccess({name: name, address: e.target.id});
             //On browser for testing
             // this.props.setConnectedDevice({name: name, id: e.target.id});
@@ -78,15 +77,17 @@ class DeviceList extends Component {
     }
 
     onConnectSuccess(result) {
-        this.props.setConnectedDevice({name: result.name, id: result.address});
-        this.props.setConnectionStatus(true);
-        document.querySelector(".device-list").style.display = 'none';
-        document.querySelector(".file-chooser-container").style.display = 'block';
+        console.log('onConnectSuccess: ', result);
+        // this.props.setConnectedDevice({name: result.name, id: result.address});
+        // this.props.setConnectionStatus(true);
+        // document.querySelector(".device-list").style.display = 'none';
+        // document.querySelector(".file-chooser-container").style.display = 'block';
     }
 
     onConnectError(error) {
-        alert(`${error.address}: ${error.message}`);
-        document.querySelector(".update-buttons-container").style.display = 'none';
+        console.log('onConnectError: ', error);
+        // alert(`${error.address}: ${error.message}`);
+        // document.querySelector(".update-buttons-container").style.display = 'none';
     }
     
     render () {

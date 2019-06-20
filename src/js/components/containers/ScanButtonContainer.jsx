@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bleMod } from '../../libs/ble/bleMod';
+import { bleMod } from '../../libs/ble/bleDfu';
 import { connect } from 'react-redux';
 import { addDevice } from '../../actions/index';
 
@@ -25,16 +25,19 @@ class ScanButtonContainer extends Component {
 
         this.scanForDevices = this.scanForDevices.bind(this);
         this.onScanResult = this.onScanResult.bind(this);
+        this.onScanError = this.onScanError.bind(this);
     }
 
     scanForDevices() {
         document.querySelector(".device-list").style.display = 'block';
         document.querySelector(".scan-btn-div").style.display = "none";
         if (!this.props.isBrowser) {
-            bleMod.startScan(this.onScanResult);
-            setTimeout(() => {
-                bleMod.stopScan(() => {console.log("ScanStopped");});
-            }, 4000);
+            console.log("About to Scan");
+            bleMod.scan(this.onScanResult, this.onScanError);
+            // bleMod.startScan(this.onScanResult);
+            // setTimeout(() => {
+            //     bleMod.stopScan(() => {console.log("ScanStopped");});
+            // }, 4000);
         } else {
             for (var i = 1; i < 10; i ++) {
                 this.props.addDevice({
@@ -46,17 +49,19 @@ class ScanButtonContainer extends Component {
     }
 
     onScanResult(result) {
-        if (result.status == 'scanResult') {
-            var match = false;
+        var match = false;
 
-            for ( var i = 0 ; i < this.props.devices.length; i ++ ) {
-                if ( result.address == this.props.devices[i].id ) { match = true; }
-            }
-
-            if (!match) {
-                this.props.addDevice({ name: (result.name == null) ? "No Name" : result.name, id: result.address });
-            }
+        for ( var i = 0 ; i < this.props.devices.length; i ++ ) {
+            if ( result.id == this.props.devices[i].id ) { match = true; }
         }
+
+        if (!match) {
+            this.props.addDevice({ name: (!result.name) ? "No Name" : result.name, id: result.id });
+        }
+    }
+
+    onScanError(error) {
+        console.log("onScanError: ", error);
     }
 
     render() {
