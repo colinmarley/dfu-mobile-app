@@ -10,6 +10,8 @@ export const SET_CONNECTED_DEVICE = 'SET_CONNECTED_DEVICE';
 export const SET_DFU_STATUS = 'SET_DFU_STATUS';
 export const SET_INIT_STATUS = 'SET_INIT_STATUS';
 export const SET_FIRMWARE_STATUS = 'SET_FIRMWARE_STATUS';
+export const SET_INIT_FILE_URI = 'SET_INIT_FILE_URI';
+export const SET_FIRMWARE_FILE_URI = 'SET_FIRMWARE_FILE_URI';
 
 
 
@@ -53,4 +55,14 @@ export const setInitStatus = initSent => ({
 export const setFirmwareStatus = firmwareSent => ({
     type: SET_FIRMWARE_STATUS,
     firmwareSent
+});
+
+export const setInitFileUri = fileUri => ({
+    type: SET_INIT_FILE_URI,
+    fileUri
+});
+
+export const setFirmwareFileUri = fileUri => ({
+    type: SET_FIRMWARE_FILE_URI,
+    fileUri
 });

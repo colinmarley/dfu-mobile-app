@@ -1,9 +1,14 @@
-import { SET_DFU_STATUS, SET_INIT_STATUS, SET_FIRMWARE_STATUS } from '../actions/index';
+import {
+    SET_DFU_STATUS, SET_INIT_STATUS, SET_FIRMWARE_STATUS,
+    SET_INIT_FILE_URI, SET_FIRMWARE_FILE_URI
+} from '../actions/index';
 
 const initState = {
     dfuReady: false,
     initSent: false,
-    firmwareSent: false
+    firmwareSent: false,
+    initFileUri: "",
+    firmwareFileUri: ""
 }
 
 const dfuReducers = (state = initState, action) => {
@@ -14,6 +19,10 @@ const dfuReducers = (state = initState, action) => {
             return ({...state, initSent: action.initSent});
         case SET_FIRMWARE_STATUS:
             return ({...state, firmwareSent: action.firmwareSent});
+        case SET_INIT_FILE_URI:
+            return ({...state, initFileUri: action.fileUri});
+        case SET_FIRMWARE_FILE_URI:
+            return ({...state, firmwareFileUri: action.fileUri});
         default:
             return state;
     }

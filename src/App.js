@@ -8,6 +8,7 @@ import DeviceListContainer from './js/components/containers/DeviceListContainer'
 import ScanButtonContainer from './js/components/containers/ScanButtonContainer';
 import ConnectionHeaderContainer from './js/components/containers/ConnectionHeaderContainer';
 import UpdateButtonsContainer from './js/components/containers/UpdateButtonsContainer';
+import FileChooserContainer from './js/components/containers/FileChooserContainer';
 
 //Must name the state browser different from browser passed to props to differentiate
 const mapStateToProps = (state, ownProps) => ({
@@ -25,7 +26,6 @@ class App extends Component {
         super(props);
 
     }
-
 
     componentDidMount() {
       if (!this.props.browser) {
@@ -49,6 +49,7 @@ class App extends Component {
                 <ConnectionHeaderContainer />
                 <ScanButtonContainer />
                 <UpdateButtonsContainer /> 
+                <FileChooserContainer />
             </div>
         );
     }

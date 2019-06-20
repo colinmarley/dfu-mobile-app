@@ -39,6 +39,7 @@ class ConnectionHeaderContainer extends Component {
         this.props.setConnectionStatus(false);
         this.props.setConnectedDevice({name: "", id: ""});
         document.querySelector(".scan-btn-div").style.display = "block";
+        document.querySelector(".update-buttons-container").style.display = 'none';
         
     }
 
