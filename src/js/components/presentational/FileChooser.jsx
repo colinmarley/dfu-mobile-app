@@ -1,10 +1,11 @@
 import React from 'react';
 
-const FileChooser = ({btnClassName, pClassName, btnTitle, fileName, onClick}) => {
+const FileChooser = ({btnClassName, pNameClassName, pUriClassName, divClassName, btnTitle, fileName, filePath, onClick}) => {
     return (
-        <div className="file-chooser">
+        <div className={ divClassName }>
             <button className={ btnClassName} onClick={ onClick }>{ btnTitle }</button>
-            <p className={ pClassName }>{ fileName }</p>
+            <p className={ pNameClassName }>{ fileName }</p>
+            <p className={ pUriClassName }>{ filePath }</p>
         </div>
     )
 }

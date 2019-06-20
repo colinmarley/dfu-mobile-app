@@ -12,6 +12,8 @@ export const SET_INIT_STATUS = 'SET_INIT_STATUS';
 export const SET_FIRMWARE_STATUS = 'SET_FIRMWARE_STATUS';
 export const SET_INIT_FILE_URI = 'SET_INIT_FILE_URI';
 export const SET_FIRMWARE_FILE_URI = 'SET_FIRMWARE_FILE_URI';
+export const SET_INIT_FILE_NAME = 'SET_INIT_FILE_NAME';
+export const SET_FIRMWARE_FILE_NAME = 'SET_FIRMWARE_FILE_NAME';
 
 
 
@@ -65,4 +67,14 @@ export const setInitFileUri = fileUri => ({
 export const setFirmwareFileUri = fileUri => ({
     type: SET_FIRMWARE_FILE_URI,
     fileUri
+});
+
+export const setInitFileName = fileName => ({
+    type: SET_INIT_FILE_NAME,
+    fileName
+});
+
+export const setFirmwareFileName = fileName => ({
+    type: SET_FIRMWARE_FILE_NAME,
+    fileName
 });

@@ -67,11 +67,13 @@ class DeviceList extends Component {
             //On mobile device
             bleMod.connect(e.target.id, this.onConnectSuccess, this.onConnectError);
         } else {
+            console.log("onConnect (e.target):", e.target.id);
+            this.onConnectSuccess({name: name, address: e.target.id});
             //On browser for testing
-            this.props.setConnectedDevice({name: name, id: e.target.id});
-            this.props.setConnectionStatus(true);
-            document.querySelector(".device-list").style.display = 'none';
-            document.querySelector(".file-chooser-container").style.display = 'block';
+            // this.props.setConnectedDevice({name: name, id: e.target.id});
+            // this.props.setConnectionStatus(true);
+            // document.querySelector(".device-list").style.display = 'none';
+            // document.querySelector(".file-chooser-container").style.display = 'block';
         }
     }
 

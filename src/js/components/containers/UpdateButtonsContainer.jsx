@@ -26,32 +26,26 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const dfuStyle = (conds) => {
-    console.log("dfuConds: ", conds);
     const ret = {   
         "color": (!conds[0]) ? "lawngreen" : "grey",
         "border-color": (!conds[0]) ? "lawngreen" : "grey"
     }
-    console.log("ret: ", ret);
     return (ret);
 }
 
 const initStyle = (conds) => {
-    console.log("initConds: ", conds);
     const ret = {
         "color": (conds[0] && !conds[1]) ? "lawngreen": "grey",
         "border-color": (conds[0] && !conds[1]) ? "lawngreen": "grey"
     }
-    console.log("ret: ", ret);
     return (ret);
 }
 
 const firmwareStyle = (conds) => {
-    console.log("firmwarConds: ", conds);
     const ret = {
         "color": (conds[0] && conds[1] && !conds[2]) ? "lawngreen" : "grey",
         "border-color": (conds[0] && conds[1] && !conds[2]) ? "lawngreen" : "grey"
     }
-    console.log("ret: ", ret);
     return (ret);
 }
 
