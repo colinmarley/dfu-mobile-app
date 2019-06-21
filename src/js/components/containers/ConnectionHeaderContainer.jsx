@@ -28,32 +28,35 @@ class ConnectionHeaderContainer extends Component {
     }
 
     onDisconnect(e, id) {
+        //Disconnect Button Tapped
         if (!this.props.isBrowser) {
+            //Try to disconnect if the app is on a device and is already connected
             bleMod.disconnect(id, this.onDisconnectSuccess, this.onDisconnectError);
         } else {
+            //Testing
             this.onDisconnectSuccess();
         }
     }
 
-
     onDisconnectSuccess(result = '') {
         this.props.setConnectionStatus(false);
-        this.props.setConnectedDevice({name: "", id: ""});
-        document.querySelector(".scan-btn-div").style.display = "block";
-        document.querySelector(".update-buttons-container").style.display = 'none';
-        document.querySelector(".file-chooser-container").style.display = 'none';
+        this.props.setConnectedDevice({name: '', id: ''});
+        document.querySelector('.scan-btn-div').style.display = 'block';
+        document.querySelector('.rescan-btn-div').style.display = 'none';
+        document.querySelector('.file-chooser-container').style.display = 'none';
+        document.querySelector('.start-dfu-container').style.display = 'none';
         
     }
 
     onDisconnectError(error) {
-        console.log("Reached onDisconnectError");
+        console.log('Reached onDisconnectError');
         console.log(error);
     }
 
     render() {
-        console.log("this.props.connectedDevice: ", this.props.connectedDevice);
+        console.log('this.props.connectedDevice: ', this.props.connectedDevice);
         return (
-            <div className="conn-header-div">
+            <div className='conn-header-div'>
                 <ConnectionHeader onDisconnect={ this.onDisconnect } status={ this.props.isConnected } name={ this.props.connectedDevice.name } id={ this.props.connectedDevice.id } />
             </div>
         );

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { setBrowser } from './js/actions/index';
 
-import DeviceListContainer from './js/components/containers/DeviceListContainer';
 import ScanButtonContainer from './js/components/containers/ScanButtonContainer';
 import ConnectionHeaderContainer from './js/components/containers/ConnectionHeaderContainer';
 import FileChooserContainer from './js/components/containers/FileChooserContainer';

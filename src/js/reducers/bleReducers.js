@@ -1,4 +1,6 @@
-import { ADD_DEVICE, SET_CONNECTED_DEVICE, SET_CONNECTION_STATUS } from '../actions/index';
+import {
+    ADD_DEVICE, SET_CONNECTED_DEVICE, SET_CONNECTION_STATUS,
+    CLEAR_DEVICES } from '../actions/index';
 
 const initState = {
     devices: [],
@@ -17,6 +19,8 @@ const bleReducers = (state = initState, action) => {
             return ({ ...state, connectedDevice: action.device });
         case ADD_DEVICE:
             return ({ ...state, devices: [...state.devices, action.device] });
+        case CLEAR_DEVICES:
+            return ({ ...state, devices: []});
         default:
             return state;
     }

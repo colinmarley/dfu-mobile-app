@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bleMod } from '../../libs/ble/bleDfu';
 
+import { setDfuStart, setDfuProgress } from '../../actions/index';
+
 import StartDfuButton from '../presentational/StartDfuButton';
+import ProgressBar from '../presentational/ProgressBar';
 
 const mapStateToProps = (state, ownProps) => ({
     isBrowser: state.device.isBrowser,
 
     dfuReady: state.dfu.dfuReady,
+    dfuStart: state.dfu.dfuStart,
     dfuProgress: state.dfu.dfuProgress,
 
     fileUri: state.dfu.fileUri,
@@ -15,7 +19,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    setDfuStart: dfuStart => { dispatch(setDfuStart(dfuStart)); },
+    setDfuProgress: dfuProgress => { dispatch(setDfuProgress(dfuProgress)); }
 });
 
 class StartDfuContainer extends Component {
@@ -29,15 +34,18 @@ class StartDfuContainer extends Component {
 
     sendDfu(e) {
         console.log("sendDfu");
-        bleMod.dfu(this.props.connectedDevice.id, this.props.fileUri, console.log, this.onSendDfuError);
+        document.querySelector(".progress-bar-div").style.display = "block";
+        bleMod.dfu(this.props.connectedDevice.id, this.props.fileUri, this.onSendDfuProgress, this.onSendDfuError);
     }
 
     onSendDfuProgress(result) {
         console.log("progress");
         switch(result.status) {
-            case 'progressChanged':
-                console.log("percent: ", result.progress.percent);
+            case "progressChanged":
+                this.props.setDfuProgress(result.progress.percent);
                 break;
+            case "dfuCompleted":
+                document.querySelector(".start-dfu-container").style.display = 'none';
             default:
                 console.log(`dfuProgress: ${result.status}`);
                 break;
@@ -53,6 +61,7 @@ class StartDfuContainer extends Component {
         return (
             <div className="start-dfu-container">
                 <StartDfuButton btnTitle={ 'Start DFU' } onClick={ this.sendDfu } />
+                <ProgressBar progress={ this.props.dfuProgress } /> 
             </div>
         );
     }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { bleMod } from '../../libs/ble/bleDfu';
 import { connect } from 'react-redux';
-import { addDevice } from '../../actions/index';
+import { addDevice, clearDevices } from '../../actions/index';
 
 import ScanButton from '../presentational/ScanButton';
-import DeviceList from './DeviceList';
+import DeviceListContainer from './DeviceListContainer';
+import RescanButton from '../presentational/RescanButton';
 
 const mapStateToProps = (state, ownProps) => ({
     isBrowser: state.device.isBrowser,
@@ -12,7 +13,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    addDevice: device => { dispatch(addDevice(device)); }
+    addDevice: device => { dispatch(addDevice(device)); },
+    clearDevices: () => { dispatch(clearDevices()); }
 });
 
 class ScanButtonContainer extends Component {
@@ -24,20 +26,33 @@ class ScanButtonContainer extends Component {
         }
 
         this.scanForDevices = this.scanForDevices.bind(this);
+        this.rescanForDevices = this.rescanForDevices.bind(this);
         this.onScanResult = this.onScanResult.bind(this);
         this.onScanError = this.onScanError.bind(this);
     }
 
     scanForDevices() {
         document.querySelector(".device-list").style.display = 'block';
+        document.querySelector(".rescan-btn-div").style.display = 'block';
         document.querySelector(".scan-btn-div").style.display = "none";
         if (!this.props.isBrowser) {
             console.log("About to Scan");
             bleMod.scan(this.onScanResult, this.onScanError);
-            // bleMod.startScan(this.onScanResult);
-            // setTimeout(() => {
-            //     bleMod.stopScan(() => {console.log("ScanStopped");});
-            // }, 4000);
+        } else {
+            for (var i = 1; i < 10; i ++) {
+                this.props.addDevice({
+                    name: `Device ${i}`,
+                    id: `${i}`
+                });
+            }
+        }
+    }
+
+    rescanForDevices() {
+        this.props.clearDevices();
+        if (!this.props.isBrowser) {
+            console.log("About to Scan");
+            bleMod.scan(this.onScanResult, this.onScanError);
         } else {
             for (var i = 1; i < 10; i ++) {
                 this.props.addDevice({
@@ -68,7 +83,8 @@ class ScanButtonContainer extends Component {
         return (
             <div className="scan-btn-container">
                 <ScanButton onClick={this.scanForDevices} /> 
-                <DeviceList devices={this.props.devices} />
+                <DeviceListContainer devices={this.props.devices} />
+                <RescanButton onClick={this.rescanForDevices} />
             </div>
         );
     }
