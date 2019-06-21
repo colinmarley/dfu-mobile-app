@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bleMod } from '../../libs/ble/bleMod';
+import { bleMod } from '../../libs/ble/bleDfu';
 import { setConnectedDevice, setConnectionStatus } from '../../actions/index';
 
 import ConnectionHeader from '../presentational/ConnectionHeader';
@@ -35,11 +35,13 @@ class ConnectionHeaderContainer extends Component {
         }
     }
 
+
     onDisconnectSuccess(result = '') {
         this.props.setConnectionStatus(false);
         this.props.setConnectedDevice({name: "", id: ""});
         document.querySelector(".scan-btn-div").style.display = "block";
         document.querySelector(".update-buttons-container").style.display = 'none';
+        document.querySelector(".file-chooser-container").style.display = 'none';
         
     }
 

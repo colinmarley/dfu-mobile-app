@@ -1,0 +1,26 @@
+.start-dfu-container {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 25vh;
+    top: 45vh;
+    left: 0vw;
+}
+
+.start-dfu-btn-div {
+
+}
+
+.start-dfu-btn {
+    position: absolute;
+    width: 60vw;
+    height: 7vh;
+    border: 0.50vh solid darkgreen;
+    border-radius: 3vh;
+    background-color: gold;
+    left: 20vw;
+    top: 3vh;
+    font-size: 1.75vh;
+    font-weight: bold;
+    color: darkgreen;
+}

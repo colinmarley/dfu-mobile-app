@@ -84,10 +84,11 @@ export var bleMod = {
       return;
     }
 
-    ble.disconnect(id, onSuccess, onError);
+    ble.disconnect(deviceId, onSuccess, onError);
   },
 
   dfu: (deviceId, uri, onDfuProgress, onDfuError) => {
+    console.log("bleMod.dfu: ", uri);
     ble.upgradeFirmware(deviceId, uri, onDfuProgress, onDfuError);
   },
 

@@ -67,27 +67,24 @@ class DeviceList extends Component {
             //On mobile device
             bleMod.connect(e.target.id, this.onConnectSuccess, this.onConnectError);
         } else {
-            this.onConnectSuccess({name: name, address: e.target.id});
-            //On browser for testing
-            // this.props.setConnectedDevice({name: name, id: e.target.id});
-            // this.props.setConnectionStatus(true);
-            // document.querySelector(".device-list").style.display = 'none';
-            // document.querySelector(".file-chooser-container").style.display = 'block';
+            this.onConnectSuccess({name: name, id: e.target.id});
         }
     }
 
     onConnectSuccess(result) {
-        console.log('onConnectSuccess: ', result);
-        // this.props.setConnectedDevice({name: result.name, id: result.address});
-        // this.props.setConnectionStatus(true);
-        // document.querySelector(".device-list").style.display = 'none';
-        // document.querySelector(".file-chooser-container").style.display = 'block';
+        this.props.setConnectedDevice({name: (!result.name) ? "No Name" : result.name, id: result.id});
+        this.props.setConnectionStatus(true);
+        document.querySelector(".device-list").style.display = 'none';
+        document.querySelector(".file-chooser-container").style.display = 'block';
     }
 
     onConnectError(error) {
         console.log('onConnectError: ', error);
-        // alert(`${error.address}: ${error.message}`);
-        // document.querySelector(".update-buttons-container").style.display = 'none';
+        alert(`${error.id}: ${error.errorMessage}`);
+        this.props.setConnectionStatus(false);
+        this.props.setConnectedDevice({name: "", id: ""});
+        document.querySelector(".scan-btn-div").style.display = "block";
+        document.querySelector(".file-chooser-container").style.display = 'none';
     }
     
     render () {

@@ -7,13 +7,10 @@ export const SET_CONNECTION_STATUS = 'SET_CONNECTION_STATUS';
 export const SET_CONNECTED_DEVICE = 'SET_CONNECTED_DEVICE';
 
 //DFU
-export const SET_DFU_STATUS = 'SET_DFU_STATUS';
-export const SET_INIT_STATUS = 'SET_INIT_STATUS';
-export const SET_FIRMWARE_STATUS = 'SET_FIRMWARE_STATUS';
-export const SET_INIT_FILE_URI = 'SET_INIT_FILE_URI';
-export const SET_FIRMWARE_FILE_URI = 'SET_FIRMWARE_FILE_URI';
-export const SET_INIT_FILE_NAME = 'SET_INIT_FILE_NAME';
-export const SET_FIRMWARE_FILE_NAME = 'SET_FIRMWARE_FILE_NAME';
+export const SET_DFU_READY = 'SET_DFU_READY';
+export const SET_DFU_PROGRESS = 'SET_DFU_PROGRESS';
+export const SET_FILE_URI = 'SET_FILE_URI';
+export const SET_FILE_NAME = 'SET_FILE_NAME';
 
 
 
@@ -44,37 +41,22 @@ export const addDevice = device => ({
 
 
 //DFU
-export const setDfuStatus = dfuReady => ({
-    type: SET_DFU_STATUS,
+export const setDfuReady = dfuReady => ({
+    type: SET_DFU_READY,
     dfuReady
 });
 
-export const setInitStatus = initSent => ({
-    type: SET_INIT_STATUS,
-    initSent
+export const setDfuProgress = dfuProgress => ({
+    type: SET_DFU_PROGRESS,
+    dfuProgress
 });
 
-export const setFirmwareStatus = firmwareSent => ({
-    type: SET_FIRMWARE_STATUS,
-    firmwareSent
-});
-
-export const setInitFileUri = fileUri => ({
-    type: SET_INIT_FILE_URI,
+export const setFileUri = fileUri => ({
+    type: SET_FILE_URI,
     fileUri
 });
 
-export const setFirmwareFileUri = fileUri => ({
-    type: SET_FIRMWARE_FILE_URI,
-    fileUri
-});
-
-export const setInitFileName = fileName => ({
-    type: SET_INIT_FILE_NAME,
-    fileName
-});
-
-export const setFirmwareFileName = fileName => ({
-    type: SET_FIRMWARE_FILE_NAME,
+export const setFileName = fileName => ({
+    type: SET_FILE_NAME,
     fileName
 });
