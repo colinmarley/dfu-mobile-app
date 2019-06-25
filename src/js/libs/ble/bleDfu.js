@@ -117,5 +117,24 @@ export var bleMod = {
   checkConnection: function(deviceId, onSuccess, onFailure) {
     //calls onSuccess when connected and onFailure when not connected
     ble.isConnected(deviceId, onSuccess, onFailure);
+  },
+
+  onDfuProgress: (result) => {
+    console.log("onDfuProgress");
+    switch(result.status) {
+        case "progressChanged":
+            this.props.setDfuProgress(result.progress.percent);
+            break;
+        case "dfuCompleted":
+            document.querySelector(".start-dfu-container").style.display = 'none';
+        default:
+            console.log(`dfuProgress: ${result.status}`);
+            break;
+    }
+  },
+
+  onDfuError: (error) => {
+      console.log("onDfuError");
+      console.log(error);
   }
 }

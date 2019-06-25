@@ -54,7 +54,6 @@ class ConnectionHeaderContainer extends Component {
     }
 
     render() {
-        console.log('this.props.connectedDevice: ', this.props.connectedDevice);
         return (
             <div className='conn-header-div'>
                 <ConnectionHeader onDisconnect={ this.onDisconnect } status={ this.props.isConnected } name={ this.props.connectedDevice.name } id={ this.props.connectedDevice.id } />

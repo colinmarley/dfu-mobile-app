@@ -39,13 +39,36 @@ class StartDfuContainer extends Component {
     }
 
     onSendDfuProgress(result) {
-        console.log("progress");
         switch(result.status) {
+            case "deviceConnecting":
+                console.log("Connecting to device");
+                break;
+            case "deviceConnected":
+                console.log("Device has Connected");
+                break;
+            case "enablingDfuMode":
+                break;
+            case "dfuProcessStarting":
+                break;
+            case "dfuProcessStarted":
+                break;
+            case "frimwareUploading":
+                break;
             case "progressChanged":
                 this.props.setDfuProgress(result.progress.percent);
                 break;
+            case "firmwareValidating":
+                break;
             case "dfuCompleted":
                 document.querySelector(".start-dfu-container").style.display = 'none';
+            case "deviceDisconnecting":
+                break;
+            case "deviceDisconnected":
+                //Last Callback of a successful upgrade
+                break;
+            case "dfuAborted":
+                //Last Callback on user abort
+                break;
             default:
                 console.log(`dfuProgress: ${result.status}`);
                 break;
