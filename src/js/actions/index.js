@@ -11,6 +11,7 @@ export const CLEAR_DEVICES = 'CLEAR_DEVICES';
 export const SET_DFU_READY = 'SET_DFU_READY';
 export const SET_DFU_START = 'SET_DFU_START';
 export const SET_DFU_PROGRESS = 'SET_DFU_PROGRESS';
+export const STE_DFU_STATUS = "SET_DFU_STATUS";
 export const SET_FILE_URI = 'SET_FILE_URI';
 export const SET_FILE_NAME = 'SET_FILE_NAME';
 
@@ -60,6 +61,11 @@ export const setDfuStart = dfuStart => ({
 export const setDfuProgress = dfuProgress => ({
     type: SET_DFU_PROGRESS,
     dfuProgress
+});
+
+export const setDfuStatus = dfuStatus => ({
+    type: SET_DFU_STATUS,
+    dfuStatus
 });
 
 export const setFileUri = fileUri => ({

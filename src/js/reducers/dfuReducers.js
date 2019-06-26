@@ -1,12 +1,13 @@
 import {
     SET_DFU_READY, SET_DFU_PROGRESS, SET_FILE_URI, SET_FILE_NAME,
-    SET_DFU_START
+    SET_DFU_START, SET_DFU_STATUS
 } from '../actions/index';
 
 const initState = {
     dfuReady: false,
     dfuStart: false,
     dfuProgress: 0,
+    dfuStatus: "",
     fileName: "",
     fileUri: "",
 }
@@ -19,6 +20,8 @@ const dfuReducers = (state = initState, action) => {
             return ({...state, dfuStart: action.dfuStart});
         case SET_DFU_PROGRESS:
             return ({...state, dfuProgress: action.dfuProgress});
+        case SET_DFU_STATUS:
+            return ({...state, dfuStatus: action.dfuStatus});
         case SET_FILE_URI:
             console.log("setFileUri: ", action.fileUri);
             return ({...state, fileUri: action.fileUri});

@@ -8,7 +8,8 @@ import { bleMod } from '../../libs/ble/bleDfu';
 import DeviceListElement from '../presentational/DeviceListElement';
 
 const mapStateToProps = (state, ownProps) => ({
-    isBrowser: state.device.isBrowser
+    isBrowser: state.device.isBrowser,
+    dfuStart: state.dfu.dfuStart
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -81,13 +82,19 @@ class DeviceListContainer extends Component {
 
     onConnectError(error) {
         //TODO: Add case where device disconnects after dfu begins to handle differently
-
-        console.log('onConnectError: ', error);
-        alert(`${error.id}: ${error.errorMessage}`);
         this.props.setConnectionStatus(false);
         this.props.setConnectedDevice({name: "", id: ""});
-        document.querySelector(".scan-btn-div").style.display = "block";
-        document.querySelector(".file-chooser-container").style.display = 'none';
+        console.log("this.props.dfuStart: ", this.props.dfuStart);
+        if(!this.props.dfuStart) {
+            console.log('onConnectError: ', error);
+            alert(`${error.id}: ${error.errorMessage}`);
+            document.querySelector(".scan-btn-div").style.display = "block";
+            document.querySelector(".file-chooser-container").style.display = 'none';
+            document.querySelector(".rescan-btn").style.display = "block";
+        } else {
+            alert("DFU has completed. The device has now disconnected");
+            document.querySelector(".dfu-finish-btn").style.display = "block";
+        }
     }
     
     render () {
