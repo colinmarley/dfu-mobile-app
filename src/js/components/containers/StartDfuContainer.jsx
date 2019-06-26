@@ -45,11 +45,9 @@ class StartDfuContainer extends Component {
     onSendDfuProgress(result) {
         switch(result.status) {
             case "deviceConnecting":
-                console.log("Connecting to device");
                 this.props.setDfuStatus("Device Connecting");
                 break;
             case "deviceConnected":
-                console.log("Device has Connected");
                 this.props.setDfuStatus("Device Connected");
                 break;
             case "enablingDfuMode":
@@ -70,21 +68,21 @@ class StartDfuContainer extends Component {
             case "firmwareValidating":
                 this.props.setDfuStatus("Firmware Validating");
                 break;
-            case "dfuCompleted":
-                this.props.setDfuStatus("DFU Complete");
-                break;
             case "deviceDisconnecting":
                 break;
             case "deviceDisconnected":
-                this.props.setDfuStatus("DFU Complete: Device Disconnected");
+                this.props.setDfuStatus("Device Disconnected");
                 //Last Callback of a successful upgrade
+                break;
+            case "dfuCompleted":
+                this.props.setDfuStatus("DFU Complete: Device Disconnected");
                 break;
             case "dfuAborted":
                 this.props.setDfuStatus("DFU Aborted by User");
                 //Last Callback on user abort
                 break;
             default:
-                console.log(`dfuProgress: ${result.status}`);
+                console.log(`Unknown DFU Status: ${result.status}`);
                 break;
         }
     }
@@ -92,7 +90,7 @@ class StartDfuContainer extends Component {
     onSendDfuError(error) {
         console.log("onSendDfuError");
         console.log(error);
-        this.props.setDfuStatus(`DFU Error: ${error.errorMessage}`);
+        this.props.setDfuStatus(`DFU Error: ${error}`);
     }
 
     onDone(e) {
