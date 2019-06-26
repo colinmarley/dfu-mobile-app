@@ -28,6 +28,12 @@ class App extends Component {
 
     componentDidMount() {
       this.props.setBrowser(this.props.browser);
+
+      if(!this.props.browser) {
+        window.requestFileSystem(window.PERSISTENT, 5 * 1024 * 1024, function(fs) { console.log(fs); }, function(err) {
+          console.log(error);
+        });
+      }
     }
 
     

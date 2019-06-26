@@ -39,7 +39,7 @@ class StartDfuContainer extends Component {
     sendDfu(e) {
         console.log("sendDfu");
         document.querySelector(".progress-bar-div").style.display = "block";
-        bleMod.dfu(this.props.connectedDevice.id, this.props.fileUri, this.onSendDfuProgress, this.onSendDfuError);
+        bleMod.dfu(this.props.connectedDevice.id, this.props.fileUri, this.onSendDfuProgress, this.onSendDfuError, "");
     }
 
     onSendDfuProgress(result) {

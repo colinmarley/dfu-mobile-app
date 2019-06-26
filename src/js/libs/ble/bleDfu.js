@@ -68,6 +68,30 @@ function stringToBytes(string) {
 
 //Exported module to be used by other files
 export var bleMod = {
+
+  ios_uris: [
+    {
+      name: "Test 1",
+      uri: ""
+    },
+    {
+      name: "Test 2",
+      uri: ""
+    }
+  ],
+
+  android_uris: [
+    {
+      name: "Test 1",
+      uri: "content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fapp_package_test1.zip"
+    },
+    {
+      name: "Test 2",
+      uri: "content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fapp_package_test2.zip"
+    }
+  ],
+
+
   scan: (onSuccess, onError) => {
     console.log("Scan called");
     ble.scan([], 5, onSuccess, onError);
@@ -87,9 +111,17 @@ export var bleMod = {
     ble.disconnect(deviceId, onSuccess, onError);
   },
 
-  dfu: (deviceId, uri, onDfuProgress, onDfuError) => {
+  dfu: (deviceId, uri, onDfuProgress, onDfuError, deviceType) => {
     console.log("bleMod.dfu: ", uri);
-    ble.upgradeFirmware(deviceId, uri, onDfuProgress, onDfuError);
+    var usableUri = "";
+    if(deviceType == "Android") {
+      usableUri = bleMod.android_uris[0].uri;
+    } else {
+      usableUri = uri;
+    }
+    console.log("usableUri: ", usableUri);
+    
+    ble.upgradeFirmware(deviceId, usableUri, onDfuProgress, onDfuError);
   },
 
   read: function(serv_uuid, char_uuid, onSuccess, onFailure) {

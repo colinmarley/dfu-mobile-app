@@ -33,17 +33,18 @@ class FileChooserContainer extends Component {
     chooseFile(e) {
         console.log("in chooseFile");
         if (!this.props.isBrowser) {
-            fileChooser.open(this.onChooseFileSuccess, this.onChooseFileError);
+            // fileChooser.open(this.onChooseFileSuccess, this.onChooseFileError);
+            chooser.getFile().then((data) => this.onChooseFileSuccess(data)).catch((err) => this.onChooseFileError(err));
         } else {
             this.onChooseFileSuccess({name: "TestName.zip", uri: "a/b/c/c/s/TestName.zip"});
         }
     }
 
-    onChooseFileSuccess(file) {
+    onChooseFileSuccess(data) {
         console.log("chooseFile Success");
-        console.log(file);
-        this.props.setFileName(file.name);
-        this.props.setFileUri(file.uri);
+        console.log(data);
+        this.props.setFileName(data.name);
+        this.props.setFileUri(data.uri);
         document.querySelector('.start-dfu-container').style.display= 'block';
 
     }
