@@ -32,6 +32,7 @@ class ScanButtonContainer extends Component {
     }
 
     scanForDevices() {
+        this.props.clearDevices();
         document.querySelector(".device-list").style.display = 'block';
         document.querySelector(".rescan-btn-div").style.display = 'block';
         document.querySelector(".scan-btn-div").style.display = "none";
