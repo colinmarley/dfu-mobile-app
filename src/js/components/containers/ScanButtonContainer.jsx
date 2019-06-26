@@ -49,6 +49,7 @@ class ScanButtonContainer extends Component {
         }
     }
 
+    
     rescanForDevices() {
         this.props.clearDevices();
         if (!this.props.isBrowser) {

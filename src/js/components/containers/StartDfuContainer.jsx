@@ -46,32 +46,41 @@ class StartDfuContainer extends Component {
         switch(result.status) {
             case "deviceConnecting":
                 console.log("Connecting to device");
+                this.props.setDfuStatus("Device Connecting");
                 break;
             case "deviceConnected":
                 console.log("Device has Connected");
+                this.props.setDfuStatus("Device Connected");
                 break;
             case "enablingDfuMode":
                 break;
             case "dfuProcessStarting":
+                this.props.setDfuStatus("DFU Starting");
                 break;
             case "dfuProcessStarted":
                 this.props.setDfuStart(true);
                 break;
             case "frimwareUploading":
+                this.props.setDfuStatus("Firmware Uploading");
                 break;
             case "progressChanged":
                 this.props.setDfuProgress(result.progress.percent);
+                this.props.setDfuStatus(`Firmware Uploading: ${result.progress.percent}`);
                 break;
             case "firmwareValidating":
+                this.props.setDfuStatus("Firmware Validating");
                 break;
             case "dfuCompleted":
+                this.props.setDfuStatus("DFU Complete");
                 break;
             case "deviceDisconnecting":
                 break;
             case "deviceDisconnected":
+                this.props.setDfuStatus("DFU Complete: Device Disconnected");
                 //Last Callback of a successful upgrade
                 break;
             case "dfuAborted":
+                this.props.setDfuStatus("DFU Aborted by User");
                 //Last Callback on user abort
                 break;
             default:
@@ -83,15 +92,16 @@ class StartDfuContainer extends Component {
     onSendDfuError(error) {
         console.log("onSendDfuError");
         console.log(error);
+        this.props.setDfuStatus(`DFU Error: ${error.errorMessage}`);
     }
 
     onDone(e) {
-        document.querySelector(".scan-btn-div").style.display = "block";
         document.querySelector(".file-chooser-container").style.display = 'none';
-        document.querySelector(".rescan-btn").style.display = "block";
         document.querySelector(".start-dfu-container").style.display = "none";
         document.querySelector(".progress-bar-div").style.display = "none";
         document.querySelector(".dfu-finish-btn").style.display = "none";
+        document.querySelector(".scan-btn-div").style.display = "block";
+        document.querySelector(".rescan-btn").style.display = "block";
         this.props.setDfuProgress(0);
         this.props.setDfuReady(false);
         this.props.setDfuStart(false);
@@ -101,7 +111,11 @@ class StartDfuContainer extends Component {
         return (
             <div className="start-dfu-container">
                 <StartDfuButton btnTitle={ 'Start DFU' } onClick={ this.sendDfu } />
-                <ProgressBar progress={ this.props.dfuProgress } onDone={ this.onDone }/> 
+                <ProgressBar
+                    progress={ this.props.dfuProgress }
+                    onDone={ this.onDone }
+                    status={ this.props.dfuStatus }
+                /> 
             </div>
         );
     }

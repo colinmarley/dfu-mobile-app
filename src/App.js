@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bleMod } from './js/libs/ble/bleMod';
+import { bleMod } from './js/libs/ble/bleDfu';
 import { connect } from 'react-redux';
 
 import { setBrowser } from './js/actions/index';
@@ -27,16 +27,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-      if (!this.props.browser) {
-
-        bleMod.initialize(
-            {
-                "request": true,
-                "statusReceiver": false,
-                "restoreKey": "dfuTestApp"
-            }
-        );
-      }
       this.props.setBrowser(this.props.browser);
     }
 
