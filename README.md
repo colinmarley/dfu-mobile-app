@@ -1,6 +1,6 @@
 This is just a small hybrid app to allow for an OTA DFU (over-the-air device firmware update) to a Nordic nRF52 device via BLE.  The app allows the user to connect to the device and update it with a new application, softdevice, or even a new bootloader.
 
-##Table of Contents
+## Table of Contents
 
 - [Setting Up the Environment](#setting-up-the-environment)
     - [Cloning the Repository](#cloning-the-repository)
