@@ -90,7 +90,8 @@ class StartDfuContainer extends Component {
     onSendDfuError(error) {
         console.log("onSendDfuError");
         console.log(error);
-        this.props.setDfuStatus(`DFU Error: ${error}`);
+        this.props.setDfuStatus(`DFU Error: ${error.errorMessage}`);
+        document.querySelector(".dfu-finish-btn").style.display = "block";
     }
 
     onDone(e) {
@@ -103,6 +104,7 @@ class StartDfuContainer extends Component {
         this.props.setDfuProgress(0);
         this.props.setDfuReady(false);
         this.props.setDfuStart(false);
+        this.props.setDfuStatus("");
     }
 
     render() {
