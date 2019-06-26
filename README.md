@@ -1,4 +1,30 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is just a small hybrid app to allow for an OTA DFU (over-the-air device firmware update) to a Nordic nRF52 device via BLE.  The app allows the user to connect to the device and update it with a new application, softdevice, or even a new bootloader.
+
+##Table of Contents
+
+- [Setting Up the Environment](#setting-up-the-environment)
+    - [Cloning the Repository](#cloning-the-repository)
+    - [Installing Dependencies](#installing-dependencies)
+    - [Building for Android](#building-for-android)
+        - [Build]
+
+## Setting Up the Environment
+
+This project binds [webpack](https://webpack.js.org/guides/installation), [cordova](https://cordova.apache.org/#getstarted), and [React.js](https://facebook.github.io/create-react-app/docs/getting-started) together for development. (Click on the name to go to the installation page). You must have all of these installed on your computer to begin development on this project. The rest of the dependencies are automatically installed by following the instructions under the [Installing Depedencies](#installing-dependencies) section.
+
+### Cloning the Repository
+
+To clone the repository go to the directory that you want the project in and run the following command:
+
+`git clone https://github.com/colinmarley/dfu-mobile-app.git`
+
+### Installing Dependencies
+
+Once you have cloned the repository cd into the main project directory and run the following command to install all of the dependencies for the project:
+
+```
+npm install
+```
 
 ## Available Scripts
 
