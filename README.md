@@ -26,7 +26,7 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
 - [Bluetooth Low Energy](#bluetooth-low-energy)
 - [Plugins](#plugins)
     - [cordova-plugin-ble-central](#cordova-plugin-ble-central)
-    - [cordova-plugin-ble-central (fork)](#cordova-plugin-ble-central-(fork))
+    - [cordova-plugin-ble-central fork](#cordova-plugin-ble-central-fork)
     - [cyph/cordova-plugin-chooser](#cyph/cordova-plugin-chooser)
 
 
@@ -157,7 +157,7 @@ The application performs the OTA DFU using Bluetooth Low Energy (BLE). The user 
 
 The main ble plugin used in the development of this app is [`don/cordova-plugin-ble-central`](https://github.com/don/cordova-plugin-ble-central).  The plugin is used to scan, connect, and disconnect to devices in the application.  All of the documentation on the functions used in `src/js/libs/ble/bleDfu.js` can be found on the plugin's github page (see link above).
 
-### `cordova-plugin-ble-central (fork)`
+### `cordova-plugin-ble-central fork`
 
 The second ble plugin that is used is [`fxe-gear/cordova-plugin-ble-central`](https://github.com/fxe-gear/cordova-plugin-ble-central). This plugin is a fork of the plugin mentioned above with the added Android and iOS libraries from Nordic Semiconductors.  This is where the function to perform the DFU is found.  All of the documentation about how this function works can be found on the plugin's github page (see link above).
 
