@@ -25,8 +25,8 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
         - [npm run remove-ios](#npm-run-remove-ios)       
 - [Bluetooth Low Energy](#bluetooth-low-energy)
 - [Plugins](#plugins)
-    - [don/cordova-plugin-ble-central](#don-/-cordova-plugin-ble-central)
-    - [fxe-gear/cordova-plugin-ble-central](#fxe-gear/cordova-plugin-ble-central)
+    - [cordova-plugin-ble-central](#cordova-plugin-ble-central)
+    - [cordova-plugin-ble-central (fork)](#cordova-plugin-ble-central-(fork))
     - [cyph/cordova-plugin-chooser](#cyph/cordova-plugin-chooser)
 
 
