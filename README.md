@@ -27,7 +27,7 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
 - [Plugins](#plugins)
     - [cordova-plugin-ble-central](#cordova-plugin-ble-central)
     - [cordova-plugin-ble-central fork](#cordova-plugin-ble-central-fork)
-    - [cyph/cordova-plugin-chooser](#cyph/cordova-plugin-chooser)
+    - [cordova-plugin-chooser](#cordova-plugin-chooser)
 
 
 ## Setting Up the Environment
@@ -161,6 +161,6 @@ The main ble plugin used in the development of this app is [`don/cordova-plugin-
 
 The second ble plugin that is used is [`fxe-gear/cordova-plugin-ble-central`](https://github.com/fxe-gear/cordova-plugin-ble-central). This plugin is a fork of the plugin mentioned above with the added Android and iOS libraries from Nordic Semiconductors.  This is where the function to perform the DFU is found.  All of the documentation about how this function works can be found on the plugin's github page (see link above).
 
-### `cyph/cordova-plugin-chooser`
+### `cordova-plugin-chooser`
 
 The plugin that allows for the native file selection in the application is [`cyph/cordova-plugin-chooser`](https://github.com/cyph/cordova-plugin-chooser). The plugin displays the native prompt to select a file on both iOS and Android. All of the documentation on how the plugin works can be found on the olugin's github page (see link above).
