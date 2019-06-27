@@ -23,6 +23,7 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
         - [npm run add-ios](#npm-run-add-ios)
         - [npm run remove-android](#npm-run-remove-android)
         - [npm run remove-ios](#npm-run-remove-ios)
+-[Bluetooth Low Energy](#bluetooth-low-energy)
 
 
 ## Setting Up the Environment
@@ -141,3 +142,21 @@ Removes the currently installed version of the android platform from the cordova
 #### `npm run remove-ios`
 
 Removes the currently installed version of the iOS platform from the cordova project.
+
+## Bluetooth Low Energy
+
+The application performs the OTA DFU using Bluetooth Low Energy (BLE). The user is prompted to scan for devices and can then choose which one to connect to. The device to be updated must be put into DFU mode before the update can take place.  The user will know that the device is ready when the advertising name shows up as 'DfuTarg'. Once connected the and a file is chosen to send, the update is completed with a single button push on the app.
+
+### Plugins
+
+### `don/cordova-plugin-ble-central`
+
+The main ble plugin used in the development of this app is [`don/cordova-plugin-ble-central`](https://github.com/don/cordova-plugin-ble-central).  The plugin is used to scan, connect, and disconnect to devices in the application.  All of the documentation on the functions used in `src/js/libs/ble/bleDfu.js` can be found on the plugin's github page (see link above).
+
+### `fxe-gear/cordova-plugin-ble-central`
+
+The second ble plugin that is used is [`fxe-gear/cordova-plugin-ble-central`](https://github.com/fxe-gear/cordova-plugin-ble-central). This plugin is a fork of the plugin mentioned above with the added Android and iOS libraries from Nordic Semiconductors.  This is where the function to perform the DFU is found.  All of the documentation about how this function works can be found on the plugin's github page (see link above).
+
+### `cyph/cordova-plugin-chooser`
+
+The plugin that allows for the native file selection in the application is [`cyph/cordova-plugin-chooser`](https://github.com/cyph/cordova-plugin-chooser). The plugin displays the native prompt to select a file on both iOS and Android. All of the documentation on how the plugin works can be found on the olugin's github page (see link above).

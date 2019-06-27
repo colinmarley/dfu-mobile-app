@@ -124,33 +124,6 @@ export var bleMod = {
     ble.upgradeFirmware(deviceId, usableUri, onDfuProgress, onDfuError);
   },
 
-  read: function(serv_uuid, char_uuid, onSuccess, onFailure) {
-    console.log('read');
-    ble.read(deviceId, serv_uuid, char_uuid, onSuccess, onFailure);
-  },
-
-  write: function(serv_uuid, char_uuid, onSuccess, onFailure, data) {
-    //data parameter is a string
-    let payload = stringToBytes(data);
-
-    ble.write(deviceId, serv_uuid, char_uuid, payload, onSuccess, onFailure);
-  },
-
-  startNotif: function(serv_uuid, char_uuid, onSuccess, onFailure) {
-    //starts notifiction for characteristic change
-    ble.startNotification(deviceId, serv_uuid, char_uuid, onSuccess, onFailure);
-  },
-
-  stopNotif: function(serv_uuid, char_uuid, onSuccess, onFailure) {
-    //stops notification for characteristic change
-    ble.stopNotification(deviceId, serv_uuid, char_uuid, onSuccess, onFailure);
-  },
-
-  checkConnection: function(deviceId, onSuccess, onFailure) {
-    //calls onSuccess when connected and onFailure when not connected
-    ble.isConnected(deviceId, onSuccess, onFailure);
-  },
-
   onDfuProgress: (result) => {
     console.log("onDfuProgress");
     switch(result.status) {
