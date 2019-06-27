@@ -8,21 +8,21 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
     - [Building for Android](#building-for-android)
         - [Prepare and Build Project Using Cordova](#prepare-and-build-project-using-cordova)
         - [Open Project with Android Studio](#open-project-with-android-studio)
-    - [Available Scripts](#$-available-scripts)
-        - [$ npm run start](#$-npm-run-start)
-        - [$ npm run build](#$-npm-run-build)
-        - [$ npm run build-dev](#$-npm-run-build-dev)
-        - [$ npm run build-cordova](#$-npm-run-build-cordova)
-        - [$ npm run build-cordova-android](#$-npm-run-build-cordova-android)
-        - [$ npm run build-cordova-ios](#$-npm-run-build-cordova-ios)
-        - [$ npm run webpack](#$-npm-run-webpack)
-        - [$ npm run sass](#$-npm-run-sass)
-        - [$ npm run copy-res](#$-npm-run-copy-res)
-        - [$ npm run copy-img](#$-npm-run-copy-img)
-        - [$ npm run add-android](#$-npm-run-add-android)
-        - [$ npm run add-ios](#$-npm-run-add-ios)
-        - [$ npm run remove-android](#$-npm-run-remove-android)
-        - [$ npm run remove-ios](#$-npm-run-remove-ios)       
+    - [Available Scripts](#available-scripts)
+        - [npm run start](#npm-run-start)
+        - [npm run build](#npm-run-build)
+        - [npm run build-dev](#npm-run-build-dev)
+        - [npm run build-cordova](#npm-run-build-cordova)
+        - [npm run build-cordova-android](#npm-run-build-cordova-android)
+        - [npm run build-cordova-ios](#npm-run-build-cordova-ios)
+        - [npm run webpack](#npm-run-webpack)
+        - [npm run sass](#npm-run-sass)
+        - [npm run copy-res](#npm-run-copy-res)
+        - [npm run copy-img](#npm-run-copy-img)
+        - [npm run add-android](#npm-run-add-android)
+        - [npm run add-ios](#npm-run-add-ios)
+        - [npm run remove-android](#npm-run-remove-android)
+        - [npm run remove-ios](#npm-run-remove-ios)       
 - [Bluetooth Low Energy](#bluetooth-low-energy)
 - [Plugins](#plugins)
     - [don/cordova-plugin-ble-central](#don/cordova-plugin-ble-central)
@@ -86,7 +86,7 @@ Webpack is used to pack all of the written code and styling files in the `/src` 
 
 In the main project directory, you can run the following scripts:
 
-#### `$ npm run start`
+#### `npm run start`
 
 (from the [create-react-app](https://github.com/facebook/create-react-app) documentation)
 Runs the app in the development mode.<br>
@@ -95,55 +95,55 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-#### `$ npm run build`
+#### `npm run build`
 
 Builds the application with webpack to the /mobile folder in production mode.
 
-#### `$ npm run build-dev`
+#### `npm run build-dev`
 
 Webpacks the application to the /mobile folder in development mode.
 
-#### `$ npm run build-cordova`
+#### `npm run build-cordova`
 
 Webpacks the application to the /mobile folder in development mode and then builds the cordova project for whichever platforms have already been added to the cordova project.
 
-#### `$ npm run build-cordova-android`
+#### `npm run build-cordova-android`
 
 Webpacks the application to the /mobile folder in development mode and then builds the cordova project for android.
 
-#### `$ npm run build-cordova-ios`
+#### `npm run build-cordova-ios`
 
 Webpacks the application to the /mobile folder in development mode and then builds the cordova project for iOS.
 
-#### `$ npm run webpack`
+#### `npm run webpack`
 
 Runs `npm run sass-android`, webpacks the project with the webpack.config.js file and copies all of the contents of the `/res` and `/img` folders to `./mobile/www/res` and `./mobile/www/img` respectively.  Useful for updating code to check quickly for styling in the browser.
 
-#### `$ npm run sass`
+#### `npm run sass`
 
 Compresses all of the .scss files in `/src/scss/` to `./mobile/www/css/index.css`.
 
-#### `$ npm run copy-res`
+#### `npm run copy-res`
 
 Copies all of the contents of `/src/res` to `./mobile/www/res`.
 
-#### `$ npm run copy-img`
+#### `npm run copy-img`
 
 Copies all of the contents of `/src/img` to `./mobile/www/img`.
 
-#### `$ npm run add-android`
+#### `npm run add-android`
 
 Adds the latest version of the android platform to the cordova project.
 
-#### `$ npm run add-ios`
+#### `npm run add-ios`
 
 Adds the latest version of the iOS platform to the cordova project.
 
-#### `$ npm run remove-android`
+#### `npm run remove-android`
 
 Removes the currently installed version of the android platform from the cordova project.
 
-#### `$ npm run remove-ios`
+#### `npm run remove-ios`
 
 Removes the currently installed version of the iOS platform from the cordova project.
 
