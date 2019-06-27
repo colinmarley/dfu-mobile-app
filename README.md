@@ -9,7 +9,20 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
         - [Prepare and Build Project Using Cordova](#prepare-and-build-project-using-cordova)
         - [Open Project with Android Studio](#open-project-with-android-studio)
     - [Available Scripts](#available-scripts)
-        - [start]
+        - [npm run start](#npm-run-start)
+        - [npm run build](#npm-run-build)
+        - [npm run build-dev](#npm-run-build-dev)
+        - [npm run build-cordova](#npm-run-build-cordova)
+        - [npm run build-cordova-android](#npm-run-build-cordova-android)
+        - [npm run build-cordova-ios](#npm-run-build-cordova-ios)
+        - [npm run webpack](#npm-run-webpack)
+        - [npm run sass](#npm-run-sass)
+        - [npm run copy-res](#npm-run-copy-res)
+        - [npm run copy-img](#npm-run-copy-img)
+        - [npm run add-android](#npm-run-add-android)
+        - [npm run add-ios](#npm-run-add-ios)
+        - [npm run remove-android](#npm-run-remove-android)
+        - [npm run remove-ios](#npm-run-remove-ios)
 
 
 ## Setting Up the Environment
@@ -40,20 +53,19 @@ If you would like to build the android version of the project using Android Stud
 
 First, be sure to add 'android' as a platform by running the following command from the `/mobile` folder:
 
-`cordova platform add android@6`
-  (We use Android version 6.3 to remain compatible with some plugins we use)
+```cordova platform add android```
 
 Next, build the project with webpack from the main project folder by running: 
 
-`npm run webpack-android`
+```npm run webpack-android```
 
 Then go into the `/mobile` folder and run the following commands:
 
-`cordova prepare android`
+```cordova prepare android```
 
 Running cordova prepare is only required when the `/android` folder is not already created in `/mobile/platforms`.
 
-`cordova build android`
+```cordova build android```
 
 This command will build the project using the version of android specified in the `package.json` file in `/mobile` or update the current android build if one exists.
 
@@ -69,7 +81,7 @@ Webpack is used to pack all of the written code and styling files in the `/src` 
 
 In the main project directory, you can run the following scripts:
 
-#### ```npm run start```
+#### `npm run start`
 
 (from the [create-react-app](https://github.com/facebook/create-react-app) documentation)
 Runs the app in the development mode.<br>
@@ -78,9 +90,31 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+#### `npm run build`
 
+Builds the application with webpack to the /mobile folder in production mode.
 
-#### `npm run sass-android`
+#### `npm run build-dev`
+
+Webpacks the application to the /mobile folder in development mode.
+
+#### `npm run build-cordova`
+
+Webpacks the application to the /mobile folder in development mode and then builds the cordova project for whichever platforms have already been added to the cordova project.
+
+#### `npm run build-cordova-android`
+
+Webpacks the application to the /mobile folder in development mode and then builds the cordova project for android.
+
+#### `npm run build-cordova-ios`
+
+Webpacks the application to the /mobile folder in development mode and then builds the cordova project for iOS.
+
+#### `npm run webpack`
+
+Runs `npm run sass-android`, webpacks the project with the webpack.config.js file and copies all of the contents of the `/res` and `/img` folders to `./mobile/www/res` and `./mobile/www/img` respectively.  Useful for updating code to check quickly for styling in the browser.
+
+#### `npm run sass`
 
 Compresses all of the .scss files in `/src/scss/` to `./mobile/www/css/index.css`.
 
@@ -92,95 +126,18 @@ Copies all of the contents of `/src/res` to `./mobile/www/res`.
 
 Copies all of the contents of `/src/img` to `./mobile/www/img`.
 
-#### `npm run build`
+#### `npm run add-android`
 
-Runs `npm run sass-android`, webpacks the project, and copies all of the contents of the /res and /img folders to `./mobile/www/res` and `.mobile/www/img` respectively. (Does not build the project with the phonegap-cli)
+Adds the latest version of the android platform to the cordova project.
 
-#### `npm run webpack`
+#### `npm run add-ios`
 
-Runs `npm run sass-android`, webpacks the project with the webpack.config.dev.js file and copies all of the contents of the `/res` and `/img` folders to `./mobile/www/res` and `./mobile/www/img` respectively.
+Adds the latest version of the iOS platform to the cordova project.
 
-#### `npm run webpack-android`
+#### `npm run remove-android`
 
-Runs `npm run webpack` then build the project for android using the phonegap-cli. (This was being used to make a version of the project that could be used to build a .apk file in android studio)
+Removes the currently installed version of the android platform from the cordova project.
 
+####`npm run remove-ios`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Removes the currently installed version of the iOS platform from the cordova project.
