@@ -138,6 +138,6 @@ Adds the latest version of the iOS platform to the cordova project.
 
 Removes the currently installed version of the android platform from the cordova project.
 
-####`npm run remove-ios`
+#### `npm run remove-ios`
 
 Removes the currently installed version of the iOS platform from the cordova project.
