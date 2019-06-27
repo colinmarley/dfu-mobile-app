@@ -22,15 +22,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class FileChooserContainer extends Component {
-    constructor(props) {
-        super(props);
 
-        this.chooseFile = this.chooseFile.bind(this);
-        this.onChooseFileSuccess = this.onChooseFileSuccess.bind(this);
-        this.onChooseFileError = this.onChooseFileError.bind(this);
-    }
-
-    chooseFile(e) {
+    chooseFile = (e) => {
         console.log("in chooseFile");
         if (!this.props.isBrowser) {
             // fileChooser.open(this.onChooseFileSuccess, this.onChooseFileError);
@@ -40,7 +33,7 @@ class FileChooserContainer extends Component {
         }
     }
 
-    onChooseFileSuccess(data) {
+    onChooseFileSuccess = (data) => {
         console.log("chooseFile Success");
         console.log(data);
         this.props.setFileName(data.name);
@@ -49,7 +42,7 @@ class FileChooserContainer extends Component {
 
     }
 
-    onChooseFileError(err) {
+    onChooseFileError = (err) => {
         console.log("chooseFile Error");
         console.log(err);
         alert(`onChooseFileError: ${err}`);

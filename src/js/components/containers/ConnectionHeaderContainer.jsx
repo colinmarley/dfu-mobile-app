@@ -19,15 +19,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class ConnectionHeaderContainer extends Component {
-    constructor(props) {
-        super(props);
-
-        this.onDisconnect = this.onDisconnect.bind(this);
-        this.onDisconnectSuccess = this.onDisconnectSuccess.bind(this);
-        this.onDisconnectError = this.onDisconnectError.bind(this);
-    }
-
-    onDisconnect(e, id) {
+    
+    onDisconnect = (e, id) => {
         //Disconnect Button Tapped
         if (!this.props.isBrowser) {
             //Try to disconnect if the app is on a device and is already connected
@@ -38,7 +31,7 @@ class ConnectionHeaderContainer extends Component {
         }
     }
 
-    onDisconnectSuccess(result = '') {
+    onDisconnectSuccess = (result = '') => {
         this.props.setConnectionStatus(false);
         this.props.setConnectedDevice({name: '', id: ''});
         document.querySelector('.scan-btn-div').style.display = 'block';
@@ -48,7 +41,7 @@ class ConnectionHeaderContainer extends Component {
         
     }
 
-    onDisconnectError(error) {
+    onDisconnectError = (error) => {
         console.log('Reached onDisconnectError');
         console.log(error);
     }

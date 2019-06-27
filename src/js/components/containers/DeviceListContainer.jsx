@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setConnectedDevice, setConnectionStatus } from '../../actions/index';
-
 import { bleMod } from '../../libs/ble/bleDfu';
-
-
 import DeviceListElement from '../presentational/DeviceListElement';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -18,17 +15,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class DeviceListContainer extends Component {
-    constructor (props) {
-        super(props);
 
-        this.state = {
-            deviceList: []
-        }
-
-        this.onConnect = this.onConnect.bind(this);
-        this.onConnectSuccess = this.onConnectSuccess.bind(this);
-        this.onConnectError = this.onConnectError.bind(this);
-    }
+    state = {
+        deviceList: []
+    };
 
     componentDidMount() {
         let devices = [];
@@ -63,7 +53,7 @@ class DeviceListContainer extends Component {
         }
     }
 
-    onConnect(e, name) {
+    onConnect = (e, name) => {
         if (!this.props.isBrowser) {
             //On mobile device
             bleMod.connect(e.target.id, this.onConnectSuccess, this.onConnectError);
@@ -72,7 +62,7 @@ class DeviceListContainer extends Component {
         }
     }
 
-    onConnectSuccess(result) {
+    onConnectSuccess = (result) => {
         this.props.setConnectedDevice({name: (!result.name) ? "No Name" : result.name, id: result.id});
         this.props.setConnectionStatus(true);
         document.querySelector(".device-list").style.display = 'none';
@@ -80,7 +70,7 @@ class DeviceListContainer extends Component {
         document.querySelector(".file-chooser-container").style.display = 'block';
     }
 
-    onConnectError(error) {
+    onConnectError = (error) => {
         //TODO: Add case where device disconnects after dfu begins to handle differently
         this.props.setConnectionStatus(false);
         this.props.setConnectedDevice({name: "", id: ""});

@@ -18,20 +18,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class ScanButtonContainer extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            devices: []
-        }
-
-        this.scanForDevices = this.scanForDevices.bind(this);
-        this.rescanForDevices = this.rescanForDevices.bind(this);
-        this.onScanResult = this.onScanResult.bind(this);
-        this.onScanError = this.onScanError.bind(this);
-    }
-
-    scanForDevices() {
+    scanForDevices = () => {
         this.props.clearDevices();
         document.querySelector(".device-list").style.display = 'block';
         document.querySelector(".rescan-btn-div").style.display = 'block';
@@ -50,7 +38,7 @@ class ScanButtonContainer extends Component {
     }
 
     
-    rescanForDevices() {
+    rescanForDevices = () => {
         this.props.clearDevices();
         if (!this.props.isBrowser) {
             console.log("About to Scan");
@@ -65,7 +53,7 @@ class ScanButtonContainer extends Component {
         }
     }
 
-    onScanResult(result) {
+    onScanResult = (result) => {
         var match = false;
 
         for ( var i = 0 ; i < this.props.devices.length; i ++ ) {
@@ -77,7 +65,7 @@ class ScanButtonContainer extends Component {
         }
     }
 
-    onScanError(error) {
+    onScanError = (error) => {
         console.log("onScanError: ", error);
     }
 

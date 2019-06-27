@@ -27,22 +27,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class StartDfuContainer extends Component {
-    constructor(props) {
-        super(props);
 
-        this.sendDfu = this.sendDfu.bind(this);
-        this.onSendDfuProgress = this.onSendDfuProgress.bind(this);
-        this.onSendDfuError = this.onSendDfuError.bind(this);
-        this.onDone = this.onDone.bind(this);
-    }
-
-    sendDfu(e) {
+    sendDfu = (e) => {
         console.log("sendDfu");
         document.querySelector(".progress-bar-div").style.display = "block";
         bleMod.dfu(this.props.connectedDevice.id, this.props.fileUri, this.onSendDfuProgress, this.onSendDfuError, "");
     }
 
-    onSendDfuProgress(result) {
+    onSendDfuProgress = (result) => {
         switch(result.status) {
             case "deviceConnecting":
                 this.props.setDfuStatus("Device Connecting");
@@ -87,14 +79,14 @@ class StartDfuContainer extends Component {
         }
     }
 
-    onSendDfuError(error) {
+    onSendDfuError = (error) => {
         console.log("onSendDfuError");
         console.log(error);
         this.props.setDfuStatus(`DFU Error: ${error.errorMessage}`);
         document.querySelector(".dfu-finish-btn").style.display = "block";
     }
 
-    onDone(e) {
+    onDone = (e) => {
         document.querySelector(".file-chooser-container").style.display = 'none';
         document.querySelector(".start-dfu-container").style.display = "none";
         document.querySelector(".progress-bar-div").style.display = "none";
