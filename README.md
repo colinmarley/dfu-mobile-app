@@ -22,8 +22,12 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
         - [npm run add-android](#npm-run-add-android)
         - [npm run add-ios](#npm-run-add-ios)
         - [npm run remove-android](#npm-run-remove-android)
-        - [npm run remove-ios](#npm-run-remove-ios)
--[Bluetooth Low Energy](#bluetooth-low-energy)
+        - [npm run remove-ios](#npm-run-remove-ios)       
+- [Bluetooth Low Energy](#bluetooth-low-energy)
+- [Plugins](#plugins)
+    - [don/cordova-plugin-ble-central](#don/cordova-plugin-ble-central)
+    - [fxe-gear/cordova-plugin-ble-central](#fxe-gear/cordova-plugin-ble-central)
+    - [cyph/cordova-plugin-chooser](#cyph/cordova-plugin-chooser)
 
 
 ## Setting Up the Environment
@@ -111,35 +115,35 @@ Webpacks the application to the /mobile folder in development mode and then buil
 
 Webpacks the application to the /mobile folder in development mode and then builds the cordova project for iOS.
 
-#### `npm run webpack`
+#### ```$ npm run webpack```
 
 Runs `npm run sass-android`, webpacks the project with the webpack.config.js file and copies all of the contents of the `/res` and `/img` folders to `./mobile/www/res` and `./mobile/www/img` respectively.  Useful for updating code to check quickly for styling in the browser.
 
-#### `npm run sass`
+#### ```$ npm run sass```
 
 Compresses all of the .scss files in `/src/scss/` to `./mobile/www/css/index.css`.
 
-#### `npm run copy-res`
+#### ```$ npm run copy-res```
 
 Copies all of the contents of `/src/res` to `./mobile/www/res`.
 
-#### `npm run copy-img`
+#### ```$ npm run copy-img```
 
 Copies all of the contents of `/src/img` to `./mobile/www/img`.
 
-#### `npm run add-android`
+#### ```$ npm run add-android```
 
 Adds the latest version of the android platform to the cordova project.
 
-#### `npm run add-ios`
+#### ```$ npm run add-ios```
 
 Adds the latest version of the iOS platform to the cordova project.
 
-#### `npm run remove-android`
+#### ```$ npm run remove-android```
 
 Removes the currently installed version of the android platform from the cordova project.
 
-#### `npm run remove-ios`
+#### ```$ npm run remove-ios```
 
 Removes the currently installed version of the iOS platform from the cordova project.
 
@@ -147,7 +151,7 @@ Removes the currently installed version of the iOS platform from the cordova pro
 
 The application performs the OTA DFU using Bluetooth Low Energy (BLE). The user is prompted to scan for devices and can then choose which one to connect to. The device to be updated must be put into DFU mode before the update can take place.  The user will know that the device is ready when the advertising name shows up as 'DfuTarg'. Once connected the and a file is chosen to send, the update is completed with a single button push on the app.
 
-### Plugins
+## Plugins
 
 ### `don/cordova-plugin-ble-central`
 
