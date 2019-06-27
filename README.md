@@ -32,7 +32,7 @@ This is just a small hybrid app to allow for an OTA DFU (over-the-air device fir
 
 ## Setting Up the Environment
 
-This project binds [webpack](https://webpack.js.org/guides/installation), [cordova](https://cordova.apache.org/#getstarted), and [React.js](https://facebook.github.io/create-react-app/docs/getting-started) together for development. (Click on the name to go to the installation page). You must have all of these installed on your computer to begin development on this project. The rest of the dependencies are automatically installed by following the instructions under the [Installing Depedencies](#installing-dependencies) section.
+This project binds [webpack](https://webpack.js.org/guides/installation), [cordova](https://cordova.apache.org/#getstarted), [React.js](https://facebook.github.io/create-react-app/docs/getting-started), and [redux](https://redux.js.org/introduction/getting-started) together for development. (Click on the name to go to the installation page). You must have all of these installed on your computer to begin development on this project. The rest of the dependencies are automatically installed by following the instructions under the [Installing Depedencies](#installing-dependencies) section.
 
 ### Cloning the Repository
 
