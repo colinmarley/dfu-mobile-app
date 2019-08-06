@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bleMod } from '../../libs/ble/bleDfu';
 
-import { setDfuStart, setDfuProgress, setDfuReady, setDfuStatus } from '../../actions/index';
+import { setDfuStart, setDfuProgress, setDfuReady, setDfuStatus, clearDfuFlags } from '../../actions/index';
 
 import StartDfuButton from '../presentational/StartDfuButton';
 import ProgressBar from '../presentational/ProgressBar';
@@ -23,7 +23,8 @@ const mapDispatchToProps = dispatch => ({
     setDfuStart: dfuStart => { dispatch(setDfuStart(dfuStart)); },
     setDfuReady: dfuReady => { dispatch(setDfuReady(dfuReady)); },
     setDfuProgress: dfuProgress => { dispatch(setDfuProgress(dfuProgress)); },
-    setDfuStatus: dfuStatus => { dispatch(setDfuStatus(dfuStatus)); }
+    setDfuStatus: dfuStatus => { dispatch(setDfuStatus(dfuStatus)); },
+    clearDfuFlags: () => { dispatch(clearDfuFlags()); }
 });
 
 class StartDfuContainer extends Component {
@@ -31,7 +32,7 @@ class StartDfuContainer extends Component {
     sendDfu = (e) => {
         console.log("sendDfu");
         document.querySelector(".progress-bar-div").style.display = "block";
-        bleMod.dfu(this.props.connectedDevice.id, this.props.fileUri, this.onSendDfuProgress, this.onSendDfuError, "");
+        bleMod.dfu(this.props.connectedDevice.id, this.props.fileUri, this.onSendDfuProgress, this.onSendDfuError, device.platform);
     }
 
     onSendDfuProgress = (result) => {
@@ -50,7 +51,7 @@ class StartDfuContainer extends Component {
             case "dfuProcessStarted":
                 this.props.setDfuStart(true);
                 break;
-            case "frimwareUploading":
+            case "firmwareUploading":
                 this.props.setDfuStatus("Firmware Uploading");
                 break;
             case "progressChanged":
@@ -71,6 +72,7 @@ class StartDfuContainer extends Component {
                 break;
             case "dfuAborted":
                 this.props.setDfuStatus("DFU Aborted by User");
+                this.props.clearDfuFlags();
                 //Last Callback on user abort
                 break;
             default:
@@ -93,10 +95,7 @@ class StartDfuContainer extends Component {
         document.querySelector(".dfu-finish-btn").style.display = "none";
         document.querySelector(".scan-btn-div").style.display = "block";
         document.querySelector(".rescan-btn").style.display = "block";
-        this.props.setDfuProgress(0);
-        this.props.setDfuReady(false);
-        this.props.setDfuStart(false);
-        this.props.setDfuStatus("");
+        this.props.clearDfuFlags();
     }
 
     render() {

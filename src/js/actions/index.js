@@ -14,6 +14,7 @@ export const SET_DFU_PROGRESS = 'SET_DFU_PROGRESS';
 export const SET_DFU_STATUS = "SET_DFU_STATUS";
 export const SET_FILE_URI = 'SET_FILE_URI';
 export const SET_FILE_NAME = 'SET_FILE_NAME';
+export const CLEAR_DFU_FLAGS = 'CLEAR_DFU_FLAGS';
 
 
 
@@ -77,3 +78,7 @@ export const setFileName = fileName => ({
     type: SET_FILE_NAME,
     fileName
 });
+
+export const clearDfuFlags = () => ({
+    type: CLEAR_DFU_FLAGS,
+})

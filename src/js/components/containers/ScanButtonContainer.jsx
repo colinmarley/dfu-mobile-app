@@ -26,7 +26,7 @@ class ScanButtonContainer extends Component {
         document.querySelector(".scan-btn-div").style.display = "none";
         if (!this.props.isBrowser) {
             console.log("About to Scan");
-            bleMod.scan(this.onScanResult, this.onScanError);
+            bleMod.scan(this.onScanResult, this.onScanError, 7);
         } else {
             for (var i = 1; i < 10; i ++) {
                 this.props.addDevice({
@@ -42,7 +42,7 @@ class ScanButtonContainer extends Component {
         this.props.clearDevices();
         if (!this.props.isBrowser) {
             console.log("About to Scan");
-            bleMod.scan(this.onScanResult, this.onScanError);
+            bleMod.scan(this.onScanResult, this.onScanError, 7);
         } else {
             for (var i = 1; i < 10; i ++) {
                 this.props.addDevice({

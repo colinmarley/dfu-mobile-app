@@ -42,5 +42,10 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "onsenui": "^2.10.10",
+    "react-onsenui": "^1.11.2"
   }
 }
