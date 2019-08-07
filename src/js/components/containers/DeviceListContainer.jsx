@@ -5,98 +5,101 @@ import { bleMod } from '../../libs/ble/bleDfu';
 import DeviceListElement from '../presentational/DeviceListElement';
 
 const mapStateToProps = (state, ownProps) => ({
-    isBrowser: state.device.isBrowser,
-    dfuStart: state.dfu.dfuStart
+	isBrowser: state.device.isBrowser,
+	dfuStart: state.dfu.dfuStart,
 });
 
 const mapDispatchToProps = dispatch => ({
-    setConnectedDevice:  device => { dispatch(setConnectedDevice(device)); },
-    setConnectionStatus:  isConnected => { dispatch(setConnectionStatus(isConnected)); }
+	setConnectedDevice: device => {
+		dispatch(setConnectedDevice(device));
+	},
+	setConnectionStatus: isConnected => {
+		dispatch(setConnectionStatus(isConnected));
+	},
 });
 
 class DeviceListContainer extends Component {
+	state = {
+		deviceList: [],
+	};
 
-    state = {
-        deviceList: []
-    };
+	componentDidMount() {
+		let devices = [];
 
-    componentDidMount() {
-        let devices = [];
-        
+		this.props.devices.forEach(device => {
+			devices.push(
+				<DeviceListElement deviceName={device.name} deviceId={device.id} />
+			);
+		});
 
-        this.props.devices.forEach( device => {
-            devices.push(
-                <DeviceListElement deviceName={device.name} deviceId={device.id} />
-            );
-        });
-        
-        if (this.state.deviceList.length != devices.length) {
-            this.setState({
-                deviceList: devices
-            });
-        }
-    }
+		if (this.state.deviceList.length != devices.length) {
+			this.setState({
+				deviceList: devices,
+			});
+		}
+	}
 
-    componentDidUpdate(prevProps, prevState) {
-        let devices = [];
+	componentDidUpdate(prevProps, prevState) {
+		let devices = [];
 
-        this.props.devices.forEach( device => {
-            devices.push(
-                <DeviceListElement deviceName={device.name} deviceId={device.id} onConnect={this.onConnect} />
-            );
-        });
-        
-        if (this.state.deviceList.length != devices.length) {
-            this.setState({
-                deviceList: devices
-            });
-        }
-    }
+		this.props.devices.forEach(device => {
+			devices.push(
+				<DeviceListElement
+					deviceName={device.name}
+					deviceId={device.id}
+					onConnect={this.onConnect}
+				/>
+			);
+		});
 
-    onConnect = (e, name) => {
-        if (!this.props.isBrowser) {
-            //On mobile device
-            bleMod.connect(e.target.id, this.onConnectSuccess, this.onConnectError);
-        } else {
-            this.onConnectSuccess({name: name, id: e.target.id});
-        }
-    }
+		if (this.state.deviceList.length != devices.length) {
+			this.setState({
+				deviceList: devices,
+			});
+		}
+	}
 
-    onConnectSuccess = (result) => {
-        this.props.setConnectedDevice({name: (!result.name) ? "No Name" : result.name, id: result.id});
-        this.props.setConnectionStatus(true);
-        document.querySelector(".device-list").style.display = 'none';
-        document.querySelector(".rescan-btn-div").style.display = 'none';
-        document.querySelector(".file-chooser-container").style.display = 'block';
-    }
+	onConnect = (e, name) => {
+		if (!this.props.isBrowser) {
+			//On mobile device
+			bleMod.connect(e.target.id, this.onConnectSuccess, this.onConnectError);
+		} else {
+			this.onConnectSuccess({ name: name, id: e.target.id });
+		}
+	};
 
-    onConnectError = (error) => {
-        //TODO: Add case where device disconnects after dfu begins to handle differently
-        this.props.setConnectionStatus(false);
-        this.props.setConnectedDevice({name: "", id: ""});
-        console.log("this.props.dfuStart: ", this.props.dfuStart);
-        if(!this.props.dfuStart) {
-            console.log('onConnectError: ', error);
-            alert(`${error.id}: ${error.errorMessage}`);
-            document.querySelector(".scan-btn-div").style.display = "block";
-            document.querySelector(".file-chooser-container").style.display = 'none';
-            document.querySelector(".rescan-btn").style.display = "block";
-        } else {
-            alert("DFU has completed. The device has now disconnected");
-            document.querySelector(".dfu-finish-btn").style.display = "block";
-        }
-    }
-    
-    render () {
-        return (
-            <div className="device-list">
-                {this.state.deviceList}
-            </div>
-        )
-    }
+	onConnectSuccess = result => {
+		this.props.setConnectedDevice({
+			name: !result.name ? 'No Name' : result.name,
+			id: result.id,
+		});
+		this.props.setConnectionStatus(true);
+		document.querySelector('.device-list').style.display = 'none';
+		document.querySelector('.rescan-btn-div').style.display = 'none';
+		document.querySelector('.file-chooser-container').style.display = 'block';
+	};
+
+	onConnectError = error => {
+		//TODO: Add case where device disconnects after dfu begins to handle differently
+		this.props.setConnectionStatus(false);
+		this.props.setConnectedDevice({ name: '', id: '' });
+		if (!this.props.dfuStart) {
+			alert(`${error.id}: ${error.errorMessage}`);
+			document.querySelector('.scan-btn-div').style.display = 'block';
+			document.querySelector('.file-chooser-container').style.display = 'none';
+			document.querySelector('.rescan-btn').style.display = 'block';
+		} else {
+			alert('DFU has completed. The device has now disconnected');
+			document.querySelector('.dfu-finish-btn').style.display = 'block';
+		}
+	};
+
+	render() {
+		return <div className='device-list'>{this.state.deviceList}</div>;
+	}
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(DeviceListContainer);

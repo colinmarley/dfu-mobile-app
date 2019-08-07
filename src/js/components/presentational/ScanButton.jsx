@@ -1,11 +1,13 @@
 import React from 'react';
 
 const ScanButton = ({ onClick }) => {
-    return (
-        <div className="scan-btn-div">
-            <button className="scan-btn" onClick={ onClick }>Scan</button>
-        </div>
-    );
-}
+	return (
+		<div className='scan-btn-div'>
+			<button className='scan-btn' onClick={onClick}>
+				Scan
+			</button>
+		</div>
+	);
+};
 
 export default ScanButton;

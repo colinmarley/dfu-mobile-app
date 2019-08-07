@@ -5,9 +5,9 @@ import bleReducers from './bleReducers';
 import dfuReducers from './dfuReducers';
 
 const rootReducer = combineReducers({
-    device: deviceReducers,
-    ble: bleReducers,
-    dfu: dfuReducers
+	device: deviceReducers,
+	ble: bleReducers,
+	dfu: dfuReducers,
 });
 
 export default rootReducer;
