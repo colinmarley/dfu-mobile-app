@@ -3,6 +3,7 @@ import {
 	SET_CONNECTED_DEVICE,
 	SET_CONNECTION_STATUS,
 	CLEAR_DEVICES,
+	SET_INIT_SCAN,
 } from '../actions/index';
 
 const initState = {
@@ -12,6 +13,7 @@ const initState = {
 		id: '',
 	},
 	isConnected: false,
+	didInitScan: false
 };
 
 const bleReducers = (state = initState, action) => {
@@ -24,6 +26,8 @@ const bleReducers = (state = initState, action) => {
 			return { ...state, devices: [...state.devices, action.device] };
 		case CLEAR_DEVICES:
 			return { ...state, devices: [] };
+		case SET_INIT_SCAN:
+			return { ...state, didInitScan: action.didInitScan };
 		default:
 			return state;
 	}

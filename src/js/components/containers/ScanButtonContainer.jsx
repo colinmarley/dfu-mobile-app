@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bleMod } from '../../libs/ble/bleDfu';
 import { connect } from 'react-redux';
-import { addDevice, clearDevices } from '../../actions/index';
+import { addDevice, clearDevices, setInitScan } from '../../actions/index';
 
 import ScanButton from '../presentational/ScanButton';
 import DeviceListContainer from './DeviceListContainer';
@@ -10,6 +10,7 @@ import RescanButton from '../presentational/RescanButton';
 const mapStateToProps = (state, ownProps) => ({
 	isBrowser: state.device.isBrowser,
 	devices: state.ble.devices,
+	didInitScan: state.ble.didInitScan,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,13 +20,19 @@ const mapDispatchToProps = dispatch => ({
 	clearDevices: () => {
 		dispatch(clearDevices());
 	},
+	setInitScan: didInitScan => {
+		dispatch(setInitScan(didInitScan));
+	},
 });
 
 class ScanButtonContainer extends Component {
 	scanForDevices = () => {
+		if(!this.props.didInitScan) {
+			this.props.setInitScan(true);
+		}
 		this.props.clearDevices();
 		document.querySelector('.device-list').style.display = 'block';
-		document.querySelector('.rescan-btn-div').style.display = 'block';
+		// document.querySelector('.rescan-btn-div').style.display = 'block';
 		document.querySelector('.scan-btn-div').style.display = 'none';
 		if (!this.props.isBrowser) {
 			bleMod.scan(this.onScanResult, this.onScanError, 7);
@@ -79,7 +86,7 @@ class ScanButtonContainer extends Component {
 			<div className='scan-btn-container'>
 				<ScanButton onClick={this.scanForDevices} />
 				<DeviceListContainer devices={this.props.devices} />
-				<RescanButton onClick={this.rescanForDevices} />
+				<RescanButton isShowing={this.props.didInitScan} onClick={this.rescanForDevices} />
 			</div>
 		);
 	}

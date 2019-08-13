@@ -46,13 +46,15 @@ const mapDispatchToProps = dispatch => ({
 class StartDfuContainer extends Component {
 	sendDfu = e => {
 		document.querySelector('.progress-bar-div').style.display = 'block';
-		bleMod.dfu(
-			this.props.connectedDevice.id,
-			this.props.fileUri,
-			this.onSendDfuProgress,
-			this.onSendDfuError,
-			device.platform
-		);
+		if(!this.props.browser) {
+			bleMod.dfu(
+				this.props.connectedDevice.id,
+				this.props.fileUri,
+				this.onSendDfuProgress,
+				this.onSendDfuError,
+				device.platform
+			);
+		}
 	};
 
 	onSendDfuProgress = result => {

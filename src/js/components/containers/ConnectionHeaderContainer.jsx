@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bleMod } from '../../libs/ble/bleDfu';
-import { setConnectedDevice, setConnectionStatus } from '../../actions/index';
+import { setConnectedDevice, setConnectionStatus, setInitScan } from '../../actions/index';
 
 import ConnectionHeader from '../presentational/ConnectionHeader';
 
@@ -19,6 +19,9 @@ const mapDispatchToProps = dispatch => ({
 	setConnectionStatus: isConnected => {
 		dispatch(setConnectionStatus(isConnected));
 	},
+	setInitScan: didInitScan => {
+		dispatch(setInitScan(didInitScan));
+	},
 });
 
 class ConnectionHeaderContainer extends Component {
@@ -35,10 +38,11 @@ class ConnectionHeaderContainer extends Component {
 
 	onDisconnectSuccess = (result = '') => {
 		this.props.setConnectionStatus(false);
-        this.props.setConnectedDevice({ name: '', id: '' });
+		this.props.setConnectedDevice({ name: '', id: '' });
+		this.props.setInitScan(false);
         
 		document.querySelector('.scan-btn-div').style.display = 'block';
-		document.querySelector('.rescan-btn-div').style.display = 'none';
+		// document.querySelector('.rescan-btn-div').style.display = 'none';
 		document.querySelector('.file-chooser-container').style.display = 'none';
 		document.querySelector('.start-dfu-container').style.display = 'none';
 	};
