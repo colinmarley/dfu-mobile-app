@@ -6,6 +6,7 @@ import FileChooser from '../presentational/FileChooser';
 
 const mapStateToProps = (state, ownProps) => ({
 	isBrowser: state.device.isBrowser,
+	hasFSAccess: state.device.hasFSAccess,
 
 	dfuReady: state.dfu.dfuReady,
 	dfuProgress: state.dfu.dfuProgress,
@@ -25,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 
 class FileChooserContainer extends Component {
 	chooseFile = e => {
-		if (!this.props.isBrowser) {
+		if (this.props.hasFSAccess) {
 			// fileChooser.open(this.onChooseFileSuccess, this.onChooseFileError);
 			chooser
 				.getFile()

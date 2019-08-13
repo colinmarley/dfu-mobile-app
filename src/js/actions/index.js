@@ -1,5 +1,6 @@
 //Device
 export const SET_BROWSER = 'SET_BROWSER';
+export const SET_FS_ACCESS = 'SET_FS_ACCESS';
 
 //BLE
 export const ADD_DEVICE = 'ADD_DEVICE';
@@ -26,6 +27,10 @@ export const setBrowser = isBrowser => ({
     isBrowser
 });
 
+export const setFSAccess = hasFSAccess => ({
+    type: SET_FS_ACCESS,
+    hasFSAccess
+});
 
 //BLE
 export const setConnectedDevice = device => ({
